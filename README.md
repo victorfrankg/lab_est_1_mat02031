@@ -3,34 +3,14 @@
 
 
 <div align="center">
-![](images/statslab_logo.jpg)
+<img src="images/statslab_logo.jpg">
 </div>
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
+
+
+
+
+
+
 <div align="center">
 <img src="images/totoro.png" width="480" height="320">
 </div>
