@@ -2,14 +2,25 @@
 title: "Laboratório de Estatística I"
 author: |
   | Turma MAT02031 - C
-  | UFRGS
+  | Celso
+  | Enzo
+  | Nicolas
+  | Vitor
+  | Professor: Rodrigo
+  | UFRGS - Universidade Federal do Rio Grande do Sul
   | Cliente: Maurício Tavares
   | Doutorando UFRGS
-date: "`r format(Sys.time(), '%d/%m/%Y')`"
+date: "Data:`r format(Sys.time(), '%d/%m/%Y')`"
 output: 
   pdf_document:
     latex_engine: xelatex
     keep_tex: false
+    toc: true
+    toc_depth: 4
+    number_sections: false
+toc-title: Sumário
+documentclass: report
+classoption: a4paper
 geometry: margin=2cm
 header-includes:
   - \usepackage{indentfirst}
@@ -17,12 +28,6 @@ indent: true
 lang:	pt
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(formatR)
-```
-
-***
 # Objetivos da Pesquisa
 
 * Identificar um padrão de como a biomassa das carcaças de animais marinhos encalhados é distribuída ao longo do tempo e do espaço na costa brasileira;
