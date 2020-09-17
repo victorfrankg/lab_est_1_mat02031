@@ -1,8 +1,11 @@
 ---
-title: "Laboratório de Estatística I"
-author: "Turma MAT02031 - C"
-date: "9/3/2020"
-output: pdf_document
+title: "Laboratório de Estatística I - MAT02031 - Turma C "
+author: | 
+    | IME - Universidade Federal do Rio Grande do Sul
+    | Profº Rodrigo dos Reis
+    | Alunos: Celso Menoti, Enzo Bertoldi, Nicolas Hahn, Victor Frank
+date: "`r format(Sys.time(), '%d/%m/%Y')`"
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +16,7 @@ library(formatR)
 
 ***
 ## Relatório de Consultoria Ian - Doutorando IPH
-### Objetivos da Pesquisa
+### Introdução
 ##### Objetivos Principais:
 
 a) Avaliar a remoção de carbendazim por carvão ativado de casca de côco e biofiltração, através de ensaios de bancada e de filtros em escala laboratorial.
@@ -36,7 +39,20 @@ l)	Comparar o efluente dos filtros analisados com o efluente dos filtros present
 \
 \
 
-### Plano de Trabalho
+##### Desfecho
+- Presença de Carbendazim em água filtrada através de carvão ativado
+
+#####  Covariáveis
+- Turbidez
+- Cor
+- pH
+- Temperatura da Água
+- Carbono Orgânico Dissolvido
+- Presença de *E. Coli*
+- Presença de coliformes
+- Extração de DNA
+
+### Plano de Análise
 O estudo será divido em duas etapas:
 
 a) **Teste de bancada**: ocorre em menor escala e serve como etapa de calibragem e validação para que o experimento possa se estender para maior escala. O objetivo é identificar a afinidade do Carbendazim com o carvão ativado utilizado através dos parâmetros de cinética de adsorção. É utilizado um filtro composto de areia e carvão ativado para avaliar a absorbância do agrotóxico carbendazim em amostras de água pura e em amostras de água da ETA-DMAE.\
@@ -79,33 +95,60 @@ $$
 \
 \
 O esquema de configuração dos filtros proposto é o seguinte:
-<center>![](/cloud/project/esquema_filtro.png)
+<center>![](../Assessoria - Ian/esquema_filtro.png)
 
 \
 \
 
-### Dicionário de Dados
+
+
+### Metodologia de Análise Estatística Proposta
+Nesta pesquisa, será feita uma comparação de diversos fatores entre dois grupos distintos, buscando testar inicialmente a absorbância do Carbendazim pelo filtro bem como o grau de influência da água impura (com microorganismos/DMAE) em relação a água pura, sugerimos utilizar a Análise de Variância (ANOVA).\
+Com a Análise de Variância, buscamos quantificar a variabilidade entre grupos distintos de observações, para testar a hipótese de que as médias entre tais grupos são significativamente iguais, desta forma, podemos identificar qual das observações possui maior influência na variável resposta.\
+
+
+Vamos assumir que $\mu_{ij}$ corresponde à média da concentração de Carbedazim na água filtrada no filtro $i$ ($i=1$, para filtro do Tipo I, $i=2$, para filtro do Tipo II) com tipo de água $j$ ($j=1$, para água do Tipo I, $j=2$, para água do tipo II). Dessa forma assume-se como hipótese nula que
+
+$$
+H_{0}: \mu_{11} = \mu_{12} = \mu_{21} = \mu_{22}
+$$
+
+Para facilitar o processo de análise, sugere-se que os dados sejam tabulados de forma a listar as observações linha a linha e as variáveis de interesse coluna a coluna.
+
+
+
+### Anexos
+##### Dicionário de Dados
 \
 $$
 \begin{array}{llllllllllllll}\hline
-\textbf{Nome}&& \textbf{Descrição}&& \textbf{Unid. de Medida / Escala} &\\ \hline
-\text{Absorbância Carbendazim}&& \text{Capacidade de absorção da substância em seu comprimento de onda} && -log(\frac{I}{I_0}) &\\
-\text{Turbidez}&& \text{Redução de transparência de um meio líquido}&& \text{NTU} &\\
-\text{Cor}&& -  && \text{Unidade Hazen - uH}   &\\
-\text{pH}&& \text{Indicador de acidez / basicidade em uma solução} && \text{pH}_{[0,14]} &   \\
-\text{Temperatura da Água}&& - && \text{Graus Celsius  (ºC)}  &    \\
-\text{Carbono Orgânico Dissolvido} && - && mg/L   &    \\
-\text{Concentração E.coli}&& - && NMP/100ml      &    \\
-\text{Concentração de coliformes}&& - && NMP/100ml          &\\
-\text{Extração de DNA}&&-&&-&\\
+\textbf{Código da Variável} && \textbf{Nome}&& \textbf{Descrição}&& \textbf{Unid. de Medida / Escala} &\\ \hline
+\text{absorb_cdb} && \text{Absorbância Carbendazim}&& \text{Capacidade de absorção da substância em seu comprimento de onda} && -log(\frac{I}{I_0}) &\\
+\text{turbidez} && \text{Turbidez}&& \text{Redução de transparência de um meio líquido}&& \text{NTU} &\\
+\text{cor} && \text{Cor}&& -  && \text{Unidade Hazen - uH}   &\\
+\text{ph} && \text{pH}&& \text{Indicador de acidez / basicidade em uma solução} && \text{pH}_{[0,14]} &   \\
+\text{temp_agua} && \text{Temperatura da Água}&& - && \text{Graus Celsius  (ºC)}  &    \\
+\text{cod} && \text{Carbono Orgânico Dissolvido} && - && mg/L   &    \\
+\text{e_coli} && \text{Concentração E. Coli}&& - && NMP/100ml      &    \\
+\text{coliformes} && \text{Concentração de coliformes}&& - && NMP/100ml          &\\
+\text{dna} && \text{Extração de DNA}&&-&&-&\\
 \end{array}
 $$ 
 \
-\
 
-### Metodologia de Análise Estatística Proposta
-Nesta pesquisa, estaremos fazendo uma comparação de diversos fatores entre dois grupos distintos, buscando testar inicialmente a absorbância do Carbendazim pelo filtro bem como o grau de influência da água impura (com microorganismos/DMAE) em relação a água pura, sugerimos utilizar a Análise de Variância (ANOVA).\
-Com a Análise de Variância, buscamos quantificar a variabilidade entre grupos distintos de observações, para testar a hipótese de que as médias entre tais grupos são significativamente iguais, desta forma, podemos identificar qual das observações possui maior influência na variável resposta.\
-Para facilitar o processo de análise, sugerimos que os dados sejam tabulados de forma a listar as organizações linha a linha e as variáveis de interesse coluna a coluna.
+##### Tabulação dos dados
+
+```{r, echo=FALSE, results='asis'}
+library(knitr)
+library(rmarkdown)
+c1 <- c("11:00",rep(1,9))
+c2 <- c("11:10",rep(1,9))
+c3 <- c("11:20",rep(1,9))
+df <- rbind(c1,c2,c3)
+colnames(df) <- c("Tempo","absorb_cbd","turbidez","cor","ph","temp_agua","cod","e_coli","coliformes","dna")
+rownames(df) = NULL
+kable(df)
+
+```
 
 
