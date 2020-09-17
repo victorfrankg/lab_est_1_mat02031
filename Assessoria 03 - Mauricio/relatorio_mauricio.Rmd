@@ -1,0 +1,49 @@
+---
+title: "Laboratório de Estatística I"
+author: |
+  | Turma MAT02031 - C
+  | Celso
+  | Enzo
+  | Nicolas
+  | Vitor
+  | Professor: Rodrigo
+  | UFRGS - Universidade Federal do Rio Grande do Sul
+  | Cliente: Maurício Tavares
+  | Doutorando UFRGS
+date: "Data:`r format(Sys.time(), '%d/%m/%Y')`"
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    keep_tex: false
+    toc: true
+    toc_depth: 4
+    number_sections: false
+toc-title: Sumário
+documentclass: report
+classoption: a4paper
+geometry: margin=2cm
+header-includes:
+  - \usepackage{indentfirst}
+indent: true
+lang:	pt
+---
+
+# Objetivos da Pesquisa
+
+* Identificar um padrão de como a biomassa das carcaças de animais marinhos encalhados é distribuída ao longo do tempo e do espaço na costa brasileira;
+* *Our principal goal in this study was to attend the callings of Barton et al. (2019) and Moleón et al. (2019), providing a robust and comprehensive quantification of carrion biomass in the important and still understudied ecosystem: the interface ocean-land. *;
+* Estimar a quantidade de biomassa das carcaças dos animais marinhos encalhados (separada por espécie e multiplicada pela abundância de cada uma).
+
+
+# Plano de Análise Estatística
+Nesta pesquisa, já foi feita uma excelente análise descritiva, porém a grande preocupação é a de que se o que foi feito está bom ou não. Sendo assim, sugerimos o fornecimento dos dados e dos códigos com o intuito de replicar as análises feitas para uma revisão detalhada do que foi feito. 
+Com os itens, poderemos averiguar cada tópico análisado:
+
+* Análise de Network de padrões espaciais;
+* Quantificação da biomassa das carcaças no espaço e no tempo;
+* Origem da biomassa;
+* Disponibilidade de biomassa de carcaças.
+
+Além disso, há um interesse, por parte do pesquisador, em realizar uma análise circular. Pela definição (vista em https://en.wikipedia.org/wiki/Circular_analysis), *circular analysis is the selection of the details of a data analysis using the data that is being analysed. It is often referred to as double dipping, as one uses the same data twice. Circular analysis unjustifiably inflates the apparent statistical strength of any results reported and, at the most extreme, can lead to the apparently significant result being found in data that consists only of noise.* Considerando todos os cuidados do pesquisador, acreditamos que tal análise é desnecessária. Afinal, não é preciso inflar a aparente força estatística dos resultados de trabalhos bem feitos, pois eles são autoexplicativos. Não só isso, também foi demonstrado o interesse para avaliar o erro padrão relativo dos resultados (que, pela definição em https://www.investopedia.com/ask/answers/040915/what-relative-standard-error.asp, *Standard error measures how much a survey estimate is likely to deviate from the actual population. It is expressed as a number. By contrast, relative standard error (RSE) is the standard error expressed as a fraction of the estimate and is usually displayed as a percentage.*), o que pode ser bastante útil para avaliar o quanto os resultados da amostra observada são representativas da população.
+
+
