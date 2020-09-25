@@ -365,7 +365,7 @@ summary {
 <h4 class="author"><div class="line-block">IME - Universidade Federal do Rio Grande do Sul<br />
 Profº Rodrigo dos Reis<br />
 Alunos: Celso Menoti, Enzo Bertoldi, Nicolas Hahn, Victor Frank</div></h4>
-<h4 class="date">17/09/2020</h4>
+<h4 class="date">24/09/2020</h4>
 
 </div>
 
@@ -402,13 +402,13 @@ Alunos: Celso Menoti, Enzo Bertoldi, Nicolas Hahn, Victor Frank</div></h4>
 </p>
 </div>
 <div id="desfecho" class="section level5">
-<h5>Desfecho</h5>
+<h5>Desfecho:</h5>
 <ul>
 <li>Presença de Carbendazim em água filtrada através de carvão ativado</li>
 </ul>
 </div>
 <div id="covariáveis" class="section level5">
-<h5>Covariáveis</h5>
+<h5>Covariáveis:</h5>
 <ul>
 <li>Turbidez</li>
 <li>Cor</li>
@@ -484,36 +484,38 @@ O esquema de configuração dos filtros proposto é o seguinte:
 <p>Nesta pesquisa, será feita uma comparação de diversos fatores entre dois grupos distintos, buscando testar inicialmente a absorbância do Carbendazim pelo filtro bem como o grau de influência da água impura (com microorganismos/DMAE) em relação a água pura, sugerimos utilizar a Análise de Variância (ANOVA).<br />
 Com a Análise de Variância, buscamos quantificar a variabilidade entre grupos distintos de observações, para testar a hipótese de que as médias entre tais grupos são significativamente iguais, desta forma, podemos identificar qual das observações possui maior influência na variável resposta.<br />
 </p>
-<p>Vamos assumir que <span class="math inline">\(\mu_{ij}\)</span> corresponde à média da concentração de Carbedazim na água filtrada no filtro <span class="math inline">\(i\)</span> (<span class="math inline">\(i=1\)</span>, para filtro do Tipo I, <span class="math inline">\(i=2\)</span>, para filtro do Tipo II) com tipo de água <span class="math inline">\(j\)</span> (<span class="math inline">\(j=1\)</span>, para água do Tipo I, <span class="math inline">\(j=2\)</span>, para água do tipo II). Dessa forma assume-se como hipótese nula que</p>
+<p>Vamos assumir que <span class="math inline">\(\mu_{ij}\)</span> corresponde à média da concentração de Carbedazim na água filtrada no filtro <span class="math inline">\(i\)</span> (<span class="math inline">\(i=1\)</span>, para filtro do Tipo I, <span class="math inline">\(i=2\)</span>, para filtro do Tipo II) com tipo de água <span class="math inline">\(j\)</span> (<span class="math inline">\(j=1\)</span>, para água do Tipo I, <span class="math inline">\(j=2\)</span>, para água do tipo II). Dessa forma assume-se como hipótese nula:</p>
 <p><span class="math display">\[
 H_{0}: \mu_{11} = \mu_{12} = \mu_{21} = \mu_{22}
 \]</span></p>
-<p>Propõe-se um Modelo de Efeito Fixo, pois busca-se testar as hipóteses acerca das médias dos tratamentos em questão. Para complementação a ANOVA, sugere-se o Teste de Tukey para comparação múltipla, com a finalidade de identificar as diferenças significativas entres as médias.</p>
 <p>Para facilitar o processo de análise, sugere-se que os dados sejam tabulados de forma a listar as observações linha a linha e as variáveis de interesse coluna a coluna.</p>
 </div>
 <div id="anexos" class="section level3">
 <h3>Anexos</h3>
 <div id="dicionário-de-dados" class="section level5">
-<h5>Dicionário de Dados</h5>
-<p><br />
-<span class="math display">\[
+<h5>Dicionário de Dados:</h5>
+<br />
+
+<center>
+<p><span class="math display">\[
+\small
 \begin{array}{llllllllllllll}\hline
-\textbf{Nome}&amp;&amp; \textbf{Descrição}&amp;&amp; \textbf{Unid. de Medida / Escala} &amp;\\ \hline
-\text{Absorbância Carbendazim}&amp;&amp; \text{Capacidade de absorção da substância em seu comprimento de onda} &amp;&amp; -log(\frac{I}{I_0}) &amp;\\
-\text{Turbidez}&amp;&amp; \text{Redução de transparência de um meio líquido}&amp;&amp; \text{NTU} &amp;\\
-\text{Cor}&amp;&amp; -  &amp;&amp; \text{Unidade Hazen - uH}   &amp;\\
-\text{pH}&amp;&amp; \text{Indicador de acidez / basicidade em uma solução} &amp;&amp; \text{pH}_{[0,14]} &amp;   \\
-\text{Temperatura da Água}&amp;&amp; - &amp;&amp; \text{Graus Celsius  (ºC)}  &amp;    \\
-\text{Carbono Orgânico Dissolvido} &amp;&amp; - &amp;&amp; mg/L   &amp;    \\
-\text{Concentração E.coli}&amp;&amp; - &amp;&amp; NMP/100ml      &amp;    \\
-\text{Concentração de coliformes}&amp;&amp; - &amp;&amp; NMP/100ml          &amp;\\
-\text{Extração de DNA}&amp;&amp;-&amp;&amp;-&amp;\\
+\textbf{Código da Variável} &amp;&amp; \textbf{Nome}&amp;&amp; \textbf{Descrição}&amp;&amp; \textbf{Unid. de Medida / Escala} &amp;\\ \hline
+\text{absorb_cdb} &amp;&amp; \text{Absorbância Carbendazim}&amp;&amp; \text{Capacidade de absorção de CBZ em seu comprimento de onda} &amp;&amp; -log(\frac{I}{I_0}) &amp;\\
+\text{turbidez} &amp;&amp; \text{Turbidez}&amp;&amp; \text{Redução de transparência de um meio líquido}&amp;&amp; \text{NTU} &amp;\\
+\text{cor} &amp;&amp; \text{Cor}&amp;&amp; -  &amp;&amp; \text{Unidade Hazen - uH}   &amp;\\
+\text{ph} &amp;&amp; \text{pH}&amp;&amp; \text{Indicador de acidez / basicidade em uma solução} &amp;&amp; \text{pH}_{[0,14]} &amp;   \\
+\text{temp_agua} &amp;&amp; \text{Temperatura da Água}&amp;&amp; - &amp;&amp; \text{Graus Celsius  (ºC)}  &amp;    \\
+\text{cod} &amp;&amp; \text{Carbono Orgânico Dissolvido} &amp;&amp; - &amp;&amp; mg/L   &amp;    \\
+\text{e_coli} &amp;&amp; \text{Concentração E. Coli}&amp;&amp; - &amp;&amp; NMP/100ml      &amp;    \\
+\text{coliformes} &amp;&amp; \text{Concentração de coliformes}&amp;&amp; - &amp;&amp; NMP/100ml          &amp;\\
+\text{dna} &amp;&amp; \text{Extração de DNA}&amp;&amp;-&amp;&amp;-&amp;\\
 \end{array}
 \]</span><br />
 </p>
 </div>
-<div id="tabulação-dos-dados" class="section level5">
-<h5>Tabulação dos dados</h5>
+<div id="exemplo-de-tabulação-dos-dados" class="section level5">
+<h5>Exemplo de tabulação dos dados:</h5>
 <table>
 <thead>
 <tr class="header">

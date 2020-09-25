@@ -1,0 +1,177 @@
+---
+title: "Plano de análise da Assessoria"
+date: '`r paste("Porto Alegre, ", paste(format(Sys.Date(), "%d"),format(Sys.Date(), "%B"), format(Sys.Date(), "%Y"), sep = " de "), sep = "")`'
+output:
+  bookdown::word_document2:
+      reference_docx: plan_analise.docx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#install.packages('formatR')
+#library(formatR)
+```
+
+***
+
+# Apresentação
+
+Este documento tem como objetivo apresentar os métodos estatísticos para análise de dados do trabalho de doutorado __"REMOÇÃO DE CARBENDAZIM POR ADSORÇÃO EM CARVÃO ATIVADO E BIOFILTRAÇÃO"__ do assessorado __Ian Rocha de Almeida__ do __Programa de Pós-Graduação Recursos Hídricos e Saneamento Ambiental__ do __Instituto de Pesquisas Hidráulicas__ da __Universidade Federal do Rio Grande do Sul__. A seguir são apresentados os objetivos do trabalho de doutorado, as variáveis do estudo e análise estatística. 
+
+## Equipe
+
+__Professor:__ Rodrigo Citton Padilha dos Reis
+
+__Alunos:__
+
+- Celso Menoti da Silva
+- Enzo Bertoldi Oestreich
+- Nicolas Mathias Hahn
+- Victor Frank Gomes
+
+\newpage
+
+# Introdução
+
+## Objetivos
+
+### Objetivo geral
+
+Avaliar a remoção de carbendazim por carvão ativado de casca de coco e biofiltração, através de ensaios de bancada e de filtros em escala laboratorial.
+
+### Objetivos específicos
+
+- Determinar os parâmetros da cinética de adsorção do carbendazim no carvão ativado granular de casca de coco a ser utilizado através de ensaios de bancada;
+- Identificação da isoterma que melhor representa a adsorção do composto em escala de bancada;
+- Identificar parâmetros operacionais como os tempos de ruptura e de saturação da coluna de adsorção, o Tempo de Contato de Leito Vazio (TCLV) e a Taxa de Aplicação Superficial (TAS), em escala laboratorial, para o carbendazim em água deionizada e em amostra efluente de decantador da Estação de Tratamento de Água Moinhos de Vento do Departamento Municipal de Água e Esgotos de Porto Alegre (DMAE);
+- Verificar se há competição pelos sítios de adsorção do carvão ativado entre o CBZ e as substâncias presentes na amostra de água da ETA;
+- Identificação do tempo de aclimatação para o crescimento do biofilme nos filtros em escala laboratorial;
+- Acompanhar o crescimento do biofilme bacteriano durante a realização dos experimentos nos filtros de areia + CAG e nos filtros *Sandwich* em escala laboratorial;
+- Identificar os micro-organismos presentes nos filtros de areia + CAG e *Sandwich* em etapas diferentes dos experimentos e correlacionar com as variáveis analisadas;
+- Verificar o impacto da presença dos contaminantes emergentes no biofilme;
+- Verificar a eficiência de filtros *Sandwich* e filtros de areia + CAG na remoção de CBZ e nos demais parâmetros de potabilidade dispostos na Portaria de Consolidação nº 5/2017 em escala laboratorial;
+- Verificar se a remoção biológica prolonga o tempo de vida útil do carvão ativado;
+- Verificar a eficiência dos filtros de areia + CAG e *Sandwich* na remoção de CBZ e demais parâmetros de potabilidade da Portaria de Consolidação nº 5/2017 em escala piloto;
+- Comparar o efluente dos filtros analisados com o efluente dos filtros presentes na ETA.
+
+# Delineamento do estudo
+
+Estudo experimental de 2 fatores. Cada fator possui dois níveis, totalizando 4 tratamentos. Os fatores e seus níveis são apresentados a seguir:
+
+- __Configuração do filtro:__ filtro padrão com areia e carvão ativado e filtro *Sandwich* (areia + carvão ativado + areia).
+- __Tipo de água:__ pura com adição de carbendazim e afluente da ETA-DMAE com adição de carbendazim.
+
+A configuração dos filtros é apresentada na Figura \@ref(fig:config).
+
+```{r config, echo=FALSE, fig.align='center', fig.cap='Representação esquemática da configuração dos filtros.', message=FALSE, warning=FALSE, out.width='80%'}
+knitr::include_graphics(here::here("Assessoria - Ian", "esquema_filtro.png"))
+```
+
+Os parâmetros físico-químicos e biológicos e sua frequência amostral são descritos a seguir:
+
+- Turbidez: três vezes por semana;
+- Cor: três vezes por semana;
+- pH: três vezes por semana;
+- Temperatura da água: três vezes por semana;
+- Absorbância Carbendazim: uma vez por semana;
+- Carbono Orgânico Total: uma vez por semana;
+- _E. Coli_: uma vez por semana;
+- Coliformes: uma vez por semana;
+- Extração de DNA e Sequenciamento: uma vez por semestre.
+
+O estudo possui uma etapa preliminar ao estudo experimental. Esta etapa consiste de __teste de bancada__ e descrita na Seção Anexos.
+
+# Variáveis do estudo
+
+## Desfecho
+
+- Presença de Carbendazim em água filtrada através de carvão ativado
+
+## Fatores de tratamento
+
+- Configuração do filtro
+- Tipo de água
+
+##  Covariáveis
+
+- Turbidez
+- Cor
+- pH
+- Temperatura da Água
+- Carbono Orgânico Dissolvido
+- Presença de *E. Coli*
+- Presença de coliformes
+- Extração de DNA
+
+# Aálise estística
+
+A descrição das exposições e covariáveis serão caracterizados utilizando médias e desvios-padrões, medianas e intervalos interquartis, ou frequências e percentuais, estratificados por tratamento (filtros de 1 a 4). Gráficos de médias e erros-padrões serão construídos para descrição da dinâmica temporal dos resultados das amostras. Para testar a hipótese de igualdade de tratamentos será utilizado o modelo de Análise de Variância (ANOVA) com teste $F$ seguido de teste de Tukey para comparações múltiplas. Os pressupostos da ANOVA serão avaliados por meio de análise de resíduos.
+
+\newpage
+
+# Anexos
+
+## Teste de bancada
+
+Esta etapa tem como objetivo realizar a calibração e validação para que o experimento possa ser realizado em uma escala laboratorial. O objetivo é identificar a afinidade do Carbendazim com o carvão ativado utilizado através dos parâmetros de cinética de adsorção. É utilizado um filtro composto de areia e carvão ativado para avaliar a absorbância do agrotóxico carbendazim em amostras de água pura e em amostras de água da ETA-DMAE.
+
+A abordagem em escala de bancada é a seguinte:
+
+1. Preparação Carvão ativado 
+    + Transformação de carvão granular para pulverizado.
+2. Ensaio com agitadores 1
+    + Concentração conhecida de CBZ;
+    + Concentração conhecida de CAP;
+    + Identificação do melhor tempo de contato.
+3. Ensaio com agitadores 2
+    + Concentração conhecida de CBZ;
+    + Tempo de contato conhecido;
+    + Variação da concentração de CAP;
+    + Identificação da Isoterma que melhor representa o processo de adsorção.
+4. Ensaios em coluna de leito fixo
+    + Concentração inicial conhecida de CBZ;
+    + Dimensionamento da coluna;
+    + Identificação dos parâmetros operacionais para coluna em escala real.
+
+A coleta por sua vez, tem a seguinte forma:
+
+* As medidas serão coletadas de 3 a 4 vezes por semana, durante 4 a 5 meses;
+* Nos dias de coleta ambas efluentes serão passadas pelo filtro a cada 15 minutos;
+* Será medido o pH, temperatura e absorbância percentual de agrotóxico na água;
+* Quando o filtro saturar, acabam os testes do dias e é medido o tempo de saturação;
+* Se o carvão ativado não possuir boa afinidade, é testado outro carvão.
+
+\newpage
+
+## Dicionário de Dados
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, purl=FALSE}
+
+cod <- c("absorb_cdb", "turbidez", "cor", "ph", "temp_agua", "cod", "e_coli", "coliformes", "dna")
+nome <-  c("Absorbância Carbendazim", "Turbidez", "Cor", "pH", "Temperatura da água", "Carbono orgânico dissolvido", "Concentração E. Coli", "Concentração de coliformes", "Extração de DNA")
+descr <- c("Capacidade de absorção de CBZ em seu comprimento de onda", "Redução de transparência de um meio líquido", "-", "Indicador de acidez / basicidade em uma solução", "-", "-", "-", "-", "-")
+uni.med <- c("$-\\log(\\frac{I}{I_0})$", "NTU", "Unidade Hazen - uH", "$pH_{[0,14]}$", "Graus Celsius  (ºC)", "mg/L", "NMP/100ml", "NMP/100ml", "-")
+
+df <- data.frame(cod, nome, descr, uni.med)
+
+knitr::kable(df, col.names = c("Código da Variável", "Nome", "Descrição", "Unid. de Medida / Escala"))
+
+```
+
+## Exemplo de tabulação dos dados
+
+Para facilitar o processo de análise, sugere-se que os dados sejam tabulados de forma a listar as observações linha a linha e as variáveis de interesse coluna a coluna.
+
+```{r, echo=FALSE, results='asis'}
+library(knitr)
+library(rmarkdown)
+c1 <- c("11:00",rep(1,9))
+c2 <- c("11:10",rep(1,9))
+c3 <- c("11:20",rep(1,9))
+df <- rbind(c1,c2,c3)
+colnames(df) <- c("Tempo","absorb_cbd","turbidez","cor","ph","temp_agua","cod","e_coli","coliformes","dna")
+rownames(df) = NULL
+kable(df)
+
+```
+
