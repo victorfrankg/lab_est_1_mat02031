@@ -14,7 +14,7 @@ library(compareGroups)
 library(readxl)
 db <- read_excel("../Assessoria 05 - Adriana/source.xlsx")
 
-
+ 
 ```
 
 ***
