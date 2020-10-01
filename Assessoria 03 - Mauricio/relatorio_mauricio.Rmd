@@ -21,17 +21,21 @@ output:
 toc-title: Sumário
 documentclass: report
 classoption: a4paper
-geometry: margin=2cm
+mainfont: Arial
+fontsize: 12pt
+geometry: "left=2cm,right=2cm,top=2cm,bottom=2cm"
 header-includes:
   - \usepackage{indentfirst}
+  - \usepackage{setspace}
 indent: true
 lang:	pt
 ---
 
+\onehalfspacing
+
 # Objetivos da Pesquisa
 
 * Identificar um padrão de como a biomassa das carcaças de animais marinhos encalhados é distribuída ao longo do tempo e do espaço na costa brasileira;
-* *Our principal goal in this study was to attend the callings of Barton et al. (2019) and Moleón et al. (2019), providing a robust and comprehensive quantification of carrion biomass in the important and still understudied ecosystem: the interface ocean-land. *;
 * Estimar a quantidade de biomassa das carcaças dos animais marinhos encalhados (separada por espécie e multiplicada pela abundância de cada uma).
 
 
@@ -44,6 +48,10 @@ Com os itens, poderemos averiguar cada tópico análisado:
 * Origem da biomassa;
 * Disponibilidade de biomassa de carcaças.
 
-Além disso, há um interesse, por parte do pesquisador, em realizar uma análise circular. Pela definição (vista em https://en.wikipedia.org/wiki/Circular_analysis), *circular analysis is the selection of the details of a data analysis using the data that is being analysed. It is often referred to as double dipping, as one uses the same data twice. Circular analysis unjustifiably inflates the apparent statistical strength of any results reported and, at the most extreme, can lead to the apparently significant result being found in data that consists only of noise.* Considerando todos os cuidados do pesquisador, acreditamos que tal análise é desnecessária. Afinal, não é preciso inflar a aparente força estatística dos resultados de trabalhos bem feitos, pois eles são autoexplicativos. Não só isso, também foi demonstrado o interesse para avaliar o erro padrão relativo dos resultados (que, pela definição em https://www.investopedia.com/ask/answers/040915/what-relative-standard-error.asp, *Standard error measures how much a survey estimate is likely to deviate from the actual population. It is expressed as a number. By contrast, relative standard error (RSE) is the standard error expressed as a fraction of the estimate and is usually displayed as a percentage.*), o que pode ser bastante útil para avaliar o quanto os resultados da amostra observada são representativas da população.
+
+Além disso, foi questionado pelo pesquisador sobre realizar uma análise circular. Este tipo de análise (também chamada de *Double Dipping*), utiliza os mesmos dados para seleção e análise, o que pode distorcer a estatística descritiva
+e as invalidar as inferências, já que os resultados estatísticos encontrados não são inerentemente independentes pelo critério de seleção sob a hipótese nula ($H_0$). Assim sendo, não recomendamos este tipo de análise. Também foi demonstrado pelo pesquisador um interesse em avaluar o erro padrão relativos dos resultados - como o erro padrão mede quanto a amostra varia em relação ao população, o relativo nada mais é do que esta representação percentual -, o que pode ser bastante útil para averiguar a representatidade dos resultados da amostra observada. Portanto, não temos ressalvas quanto a este tipo de análise.
+
+
 
 
