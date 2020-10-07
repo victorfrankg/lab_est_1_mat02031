@@ -1,0 +1,130 @@
+---
+title: "Plano de análise da Assessoria"
+date: '`r paste("Porto Alegre, ", paste(format(Sys.Date(), "%d"),format(Sys.Date(), "%B"), format(Sys.Date(), "%Y"), sep = " de "), sep = "")`'
+output:
+  bookdown::word_document2:
+      reference_docx: plan_analise.docx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#install.packages('formatR')
+#library(formatR)
+```
+
+***
+
+## Equipe
+
+__Professor:__ Rodrigo Citton Padilha dos Reis
+
+__Alunos:__
+
+- Celso Menoti da Silva
+- Enzo Bertoldi Oestreich
+- Nicolas Mathias Hahn
+- Victor Frank Gomes
+
+\newpage
+
+# Introdução
+
+## Objetivos
+
+### Objetivo geral
+
+Estimação da produtividade de transporte dos equipamentos utilizados nas minas a curto e longo prazo através do sistema de despacho
+
+
+### Objetivos específicos
+
+- Estimar a distância média de transporte;
+- Estimar a massa a ser transportada;  
+
+# Delineamento do estudo
+Para o plano de lavra mensal ocorre a coleta de dados direto do sistema de despacho em um período de até 4 meses, onde é dado maior peso nos dados do mês imediatamente anterior ao momento da execução do plano mensal. Os valores das variáveis de tempo, como por exemplo as Hora Trabalhada, assim como os valores da Produção são retiradas de um diagrama de consultas SQL e estão prontas para logo serem utilizadas nas equações de interesse para estimação de produtividade. Para alcançar o detalhamento necessário no dimensionamento de produtividade de transporte para o plano de lavra mensal, esses dados foram estratificados por equipamento de carga, frota de transporte, local de carregamento e local de basculamento. Após concluído o dimensionamento do mês subsequente, é feito um acompanhamento para concluir se o método de predição aplicado é ou não efetivo.
+
+```{r config, echo=FALSE, fig.align='center', fig.cap='Diagrama representativo da consulta SQL de produção de transporte.', message=FALSE, warning=FALSE, out.width='80%'}
+knitr::include_graphics(here::here("Assessoria 04 - Ana Carla", "plan1.JPG"))
+```
+
+
+```{r echo = FALSE,fig.cap='Diagrama representativo da consulta SQL HT da tabela de estados.'}
+knitr::include_graphics(here::here("Assessoria 04 - Ana Carla", "plan2.JPG"))
+```
+
+\newpage 
+
+# Variáveis do estudo
+
+## Desfecho Primário
+
+- Produtividade estimada para os meses subsequentes (curto e longo prazo)
+
+## Desfechos Secundários
+
+- Distância média estimada para os meses subsequentes;
+- Massa transportada estimada para os meses subsequentes;
+
+##  Covariáveis
+- Tempo de Viagem Vazio
+- Tempo de Fila para Carregar 
+- Tempo de Manobra para Carregar
+- Tempo de Carregamento
+- Tempo de Viagem Cheio 
+- Tempo de Fila para Bascular
+- Tempo de Manobra para Bascular
+- Tempo de Basculamento
+- Carga Média
+- Local de Carregamento
+- Local de Basculamento
+- Hora Trabalhada
+- Distância Média de Transporte
+- Velocidade Média
+- Massa
+- Produtividade
+- Porcentagem da Massa para LOCB
+
+# Análise estatística
+
+A descrição das variáveis de interesse será feita através de médias, desvios-padrões e medianas. Para fazer a predição das variáveis estudadas será utilizado um modelo de análise de séries temporais, sendo a escolha do mesmo de acordo com a melhor adaptação aos dados. Devem ser estimados Intervalos de Confiança com o principal propósito de fornecer dados para a tomada de decisão, além de que se estabeleça uma margem de erro para o método de previsão utilizado em nossas variáveis de interesse.
+
+
+\newpage
+
+# Anexos
+
+## Dicionário de Dados
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, purl=FALSE}
+
+id = c('TVV','TFC','TMC','TC','TVC','TFB','TMB','TB','CM','LOCC','LOCB','HT','DMT','VEL','MASS','PROD','PMB')
+nomes =  c('Tempo de Viagem Vazio','Tempo de Fila para Carregar', 'Tempo de Manobra para Carregar','Tempo de Carregamento','Tempo de Viagem Cheio', 'Tempo de Fila para Bascular','Tempo de Manobra para Bascular','Tempo de Basculamento','Carga Média', 'Local de Carregamento', 'Local de Basculamento','Hora Trabalhada','Distância Média de Transporte', 'Velocidade Média', 'Massa','Produtividade','% da Massa para LOCB')
+
+unimed = c(rep('Horas',8), 'TON', '-','-','Horas','Km','Km/h','TON','TON/h','%')
+
+df = data.frame(id, nomes, unimed)
+
+knitr::kable(df, col.names = c("Código da Vari?vel", "Nome", "Unid. de Medida / Escala"))
+
+```
+
+## Exemplo de tabulação dos dados
+
+Para facilitar o processo de análise, devemos manter a estrutura de dados original, sendo as linhas os equipamentos/local de básculo e as variáveis listadas coluna a coluna.
+
+```{r, echo=FALSE, results='asis'}
+library(knitr)
+library(rmarkdown)
+x = c(43424.2,14214.5,873487.98)
+y = c(2.56,3.30,2.62)
+z = c(356,265,232)
+w = c(18.84,17.8,15.9)
+df = data.frame(Massa = x,
+                DMT = y,
+                Produtividade = z,
+                Velocidade = w,
+                row.names = c('ESC1','ESC2','ESC3'))
+kable(df)
+```
+
