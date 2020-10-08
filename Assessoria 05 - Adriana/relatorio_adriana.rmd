@@ -1,0 +1,86 @@
+---
+title: "Laboratório de Estatística I - MAT02031 - Turma C "
+author: | 
+    | IME - Universidade Federal do Rio Grande do Sul
+    | Profº Rodrigo dos Reis
+    | Alunos: Celso Menoti, Enzo Bertoldi, Nicolas Hahn, Victor Frank
+date: "`r format(Sys.time(), '%d/%m/%Y')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(compareGroups)
+library(readxl)
+db <- read_excel("../Assessoria 05 - Adriana/source.xlsx")
+
+ 
+```
+
+***
+## Relatório de Consultoria Adriana - Mestranda FAVET
+### Introdução
+##### Objetivos Principais:
+
+a) Avaliar a influência das variáveis coletadas no diagnóstico de casos de Raiva na população bovina.
+
+##### Objetivos Secundários:
+
+
+
+\
+\
+
+##### Desfecho:
+- Diagnóstico de Raiva
+
+#####  Covariáveis:
+- Município de coleta
+- Origem do dado
+- Idade do animal
+- Sexo do animal
+- Sinais de diagnóstico
+- Diagnóstico de Herpes
+- Diagnóstico de Babesia
+- Diagnóstico de Febre Catarral Maligna
+
+
+### Plano de Análise
+TBD
+
+
+
+### Metodologia de Análise Estatística Proposta
+Para responder o objetivo desta pesquisa, sugere-se que seja feita uma Regressão Logística. Com este modelo, buscamos modelar a probabilidade de uma certa classe ou evento de natureza binária (sucesso ou fracasso, sadio ou doente, etc).\
+Estamos interessados em avaliar a influência de múltiplas variáveis sobre uma variável dependente binária, podemos expressar nosso modelo da forma $Y_i = x_i\beta + \epsilon_i$, onde encontramos estimamos as *log-chances* $Y_i = \log \frac{\mathrm{Pr}(y_i = 1)}{\mathrm{Pr}(y_i = 0)}$,que implica em $\mathrm{Pr}(y_i = 1) = \frac{1}{1 + b^{-(x_i \beta + \varepsilon_i)}}$
+Esse modelo possui certos pressupostos(forma dos resíduos, heterocedasticidade, relação funcional entre os dados) que devem ser atendidos para que seja válido.
+
+
+
+
+
+
+### Anexos
+##### Dicionário de Dados:
+\
+<center>
+$$
+\begin{array}{llllllllllllllll}\hline
+\textbf{Nome} && \textbf{Descrição}&& \textbf{Tipo de Variável}&&  \\ \hline
+\text{PG} && \text{Número do protocolo} && \text{Quantitativa discreta} & \\
+\text{Data da coleta} && \text{-}&& - &  \\
+\text{Município} && \text{Município onde foi feita a coleta}  && \text{Categórica Nominal}  & \\
+\text{Origem} && \text{Código que indica precedência do dado} && \text{Categórica Nominal} & \\
+\text{Idade} && \text{Idade em meses do animal} && -  &  \\
+\text{Sexo}  && \text{Sexo do animal} && \text{Binária} - M/F  & \\
+\text{Sinais} && \text{Código que indica presença de certas doenças no animal} && \text{Categórica Nominal} & \\
+\text{Raiva} && \text{Código de diagnóstico de Raiva no animal} && \text{Binária} - 0/1 &  \\
+\text{Herpes} && \text{Código de diagnóstico de Herpes no animal}  &&\text{Binária} - 0/1 & \\
+\text{Babesia}&& \text{Código de diagnóstico de Babesia no animal}  &&\text{Binária} - 0/1 & \\
+\text{FCM} && \text{Código de diagnóstico de Febre Catarral Maligna no animal} &&\text{Binária} - 0/1 &  \\
+\end{array}
+$$ 
+\
+
+
+
