@@ -1,0 +1,85 @@
+---
+title: "Plano de análise da Assessoria"
+date: '`r paste("Porto Alegre, ", paste(format(Sys.Date(), "%d"),format(Sys.Date(), "%B"), format(Sys.Date(), "%Y"), sep = " de "), sep = "")`'
+output:
+  bookdown::word_document2:
+      reference_docx: plan_analise.docx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#install.packages('formatR')
+#library(formatR)
+```
+
+***
+
+# Apresentação
+
+Este documento tem como objetivo apresentar os métodos estatísticos para análise de dados do trabalho de mestrado da assessorada __Adriana Belaguarda__ do __Programa de Pós-Graduação em Saúde Animal__ do __Instituto de Pesquisas Veterinárias Desidério Finamor__ da __Secretaria da Agricultura, Pecuária e Desenvolvimento Rural__. A seguir são apresentados os objetivos do trabalho de doutorado, as variáveis do estudo e análise estatística. 
+
+## Equipe
+
+__Professor:__ Rodrigo Citton Padilha dos Reis
+
+__Alunos:__
+
+- Celso Menoti da Silva
+- Enzo Bertoldi Oestreich
+- Nicolas Mathias Hahn
+- Victor Frank Gomes
+
+\newpage
+
+# Introdução
+
+## Objetivos
+
+### Objetivo geral
+
+Avaliar a influência das variáveis coletadas no diagnóstico de casos de Raiva na população bovina
+
+### Objetivos específicos
+
+# Delineamento do estudo
+
+
+# Variáveis do estudo
+
+## Desfecho:
+- Diagnóstico de Raiva
+
+##  Covariáveis:
+- Município de coleta
+- Origem do dado
+- Idade do animal
+- Sexo do animal
+- Sinais de diagnóstico
+- Diagnóstico de Herpes
+- Diagnóstico de Babesia
+- Diagnóstico de Febre Catarral Maligna
+
+# Análise estatística
+
+A descrição do desfecho e covariáveis será aplicada em variáveis quantitativas utilizando médias e desvios-padrões, medianas e intervalos interquartis. Em caso de variável qualitativa, será construído tabelas de frequência e percentuais. A visualização gráfica se dará através de diagramas circulares e gráficos de barra. Para avaliar a influência das variáveis de estudo no diagnóstico de raiva será utilizado o modelo de regressão logística, avaliando os pressupostos para uso do mesmo. 
+
+\newpage
+
+# Anexos
+## Dicionário de Dados
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, purl=FALSE}
+
+id = c('PG','Data de Coleta','Município','Origem','Idade','Sexo', 'Sinais','Raiva','Herpes','Babesia','FCM')
+descr = c('Número do Protocolo','-','Município onde foi feita a coleta','Código que indica precedência do dado','Idade em meses do animal', 'Sexo do animal','Código que indica presença de certas doenças no animal','Código de diagnóstico de Raiva no animal','Código de diagnóstico de Herpes no animal','Código de diagnóstico de Babesia no animal','Código de diagnóstico de Febre Catarral Maligna no animal')
+unimed = c('Quantitativa Discreta','-', 'Categórica Nominal','Categórica Nominal','-','Binária - M/F', 'Categórica Nominal',rep('Binária - 0/1',4))
+
+df = data.frame(id, descr, unimed)
+
+knitr::kable(df, col.names = c("Nome", "Descrição", "Unid. de Medida / Escala"))
+
+```
+
+## Exemplo de tabulação dos dados
+
+Como os dados já estão organizados e tabulados de forma a facilitar a análise de dados, será mantido o mesmo formato inicial, sendo as observações distribuídas nas linhas e as variáveis coluna a coluna.
