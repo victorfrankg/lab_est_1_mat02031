@@ -103,7 +103,7 @@ O estudo possui uma etapa preliminar ao estudo experimental. Esta etapa consiste
 - Presença de coliformes
 - Extração de DNA
 
-# Aálise estística
+# Análise estatística
 
 A descrição das exposições e covariáveis serão caracterizados utilizando médias e desvios-padrões, medianas e intervalos interquartis, ou frequências e percentuais, estratificados por tratamento (filtros de 1 a 4). Gráficos de médias e erros-padrões serão construídos para descrição da dinâmica temporal dos resultados das amostras. Para testar a hipótese de igualdade de tratamentos será utilizado o modelo de Análise de Variância (ANOVA) com teste $F$ seguido de teste de Tukey para comparações múltiplas. Os pressupostos da ANOVA serão avaliados por meio de análise de resíduos.
 
