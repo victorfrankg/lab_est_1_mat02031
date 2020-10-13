@@ -14,6 +14,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ***
 
+# Apresentação
+
+Este documento tem como objetivo apresentar os métodos estatísticos para análise de dados do trabalho de doutorado da assessorada __Ana Carla de Melo Moreira Campelo__ do __Programa de Pós-Graduação em Engenharia de Minas, Metalúrgica e de Materiais__ da __Escola de Engenharia__ da __Universidade Federal do Rio Grande do Sul__. A seguir são apresentados os objetivos do trabalho de doutorado, as variáveis do estudo e análise estatística. 
+
 ## Equipe
 
 __Professor:__ Rodrigo Citton Padilha dos Reis
@@ -33,16 +37,18 @@ __Alunos:__
 
 ### Objetivo geral
 
-Estimação da produtividade de transporte dos equipamentos utilizados nas minas a curto e longo prazo através do sistema de despacho
-
+Desenvolvimento de um indicador para mensurar o risco em um plano de lavra
 
 ### Objetivos específicos
 
+- Verificar premissas preditas para o plano de lavra subsequente;
 - Estimar a distância média de transporte;
-- Estimar a massa a ser transportada;  
+- Estimar a massa a ser transportada;
+- Esimar a produtividade;
 
 # Delineamento do estudo
-Para o plano de lavra mensal ocorre a coleta de dados direto do sistema de despacho em um período de até 4 meses, onde é dado maior peso nos dados do mês imediatamente anterior ao momento da execução do plano mensal. Os valores das variáveis de tempo, como por exemplo as Hora Trabalhada, assim como os valores da Produção são retiradas de um diagrama de consultas SQL e estão prontas para logo serem utilizadas nas equações de interesse para estimação de produtividade. Para alcançar o detalhamento necessário no dimensionamento de produtividade de transporte para o plano de lavra mensal, esses dados foram estratificados por equipamento de carga, frota de transporte, local de carregamento e local de basculamento. Após concluído o dimensionamento do mês subsequente, é feito um acompanhamento para concluir se o método de predição aplicado é ou não efetivo.
+
+O plano de lavra mensal ocorre com coleta de dados direto do sistema de despacho em um período de até 4 meses, onde é dado maior peso nos dados do mês imediatamente anterior ao momento da execução do plano mensal. Os valores das variáveis de tempo, como por exemplo as Hora Trabalhada, assim como os valores da Produção são retiradas de um diagrama de consultas SQL e estão prontas para logo serem utilizadas nas equações de interesse para estimação dos indicadores. Devido ao rico banco de dados nos sistemas de gerenciamento de frota das minas, é possível fazer o detalhamento necessário no dimensionamento de produtividade de transporte para o plano de lavra mensal, logo esses dados podem ser estratificados por equipamento de carga, frota de transporte, local de carregamento e local de basculamento. Após concluído o dimensionamento do mês subsequente, é feito um acompanhamento para concluir se o método de predição aplicado é ou não efetivo.
 
 ```{r config, echo=FALSE, fig.align='center', fig.cap='Diagrama representativo da consulta SQL de produção de transporte.', message=FALSE, warning=FALSE, out.width='80%'}
 knitr::include_graphics(here::here("Assessoria 04 - Ana Carla", "plan1.JPG"))
@@ -57,14 +63,8 @@ knitr::include_graphics(here::here("Assessoria 04 - Ana Carla", "plan2.JPG"))
 
 # Variáveis do estudo
 
-## Desfecho Primário
-
-- Produtividade estimada para os meses subsequentes (curto e longo prazo)
-
-## Desfechos Secundários
-
-- Distância média estimada para os meses subsequentes;
-- Massa transportada estimada para os meses subsequentes;
+## Desfecho 
+- Risco associado ao plano de lavra do mês subsequente
 
 ##  Covariáveis
 - Tempo de Viagem Vazio
