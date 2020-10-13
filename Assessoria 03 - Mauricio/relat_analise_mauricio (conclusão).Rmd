@@ -1,0 +1,272 @@
+---
+title: "Relatório de Análise da Assessoria (conclusão)"
+date: '`r paste("Porto Alegre, ", paste(format(Sys.Date(), "%d"),format(Sys.Date(), "%B"), format(Sys.Date(), "%Y"), sep = " de "), sep = "")`'
+output:
+  bookdown::word_document2:
+      reference_docx: plan_analise.docx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#install.packages('formatR')
+#library(formatR)
+
+```
+
+***
+
+# Apresentação
+
+Este documento tem como objetivo apresentar os métodos estatísticos para análise de dados do trabalho de doutorado __"Spatiotemporal patterns of carrion biomass of marine tetrapods in the interface ocean-land in the southern Brazilian coastline"__ do assessorado __Maurício Tavares__ do __Programa de Pós-Graduação em Biologia Animal__ do __Instituto de Biociências__ da __Universidade Federal do Rio Grande do Sul__. 
+
+
+A seguir são apresentados os objetivos do trabalho de doutorado, as variáveis do estudo e análise estatística. 
+
+## Equipe
+
+__Professor:__ Rodrigo Citton Padilha dos Reis
+
+__Alunos:__
+
+- Celso Menoti da Silva
+- Enzo Bertoldi Oestreich
+- Nicolas Mathias Hahn
+- Victor Frank Gomes
+
+\newpage
+
+# Introdução
+
+## Objetivos
+
+### Objetivo geral
+
+Fornecer uma quantificação robusta e abrangente da biomassa de carcaças no importante e ainda pouco estudado ecossistema: a interface oceano-terra.
+
+### Objetivos específicos
+
+- Descrever a distribuição espaço-temporal da biomassa de carcaças de animais marinhos encalhados na costa litorânea brasileira.
+- Estimar a quantidade de biomassa das carcaças dos animais marinhos encalhados (separada por espécie e multiplicada pela abundância de cada uma).
+
+# Análise estatística
+
+A análise estatísica empregada no artigo _"Spatiotemporal patterns of carrion biomass of marine tetrapods in the interface ocean-land in the southern Brazilian coastline"_ responde aos objetivos do mesmo.
+
+## Sugestões de análise
+
+- Verificação do código da análise estatística;
+- Reanálise a partir do código da análise estatística;
+- __Análise de dados circulares:__ descrição dos dados anuais de abundância e riqueza de espécies, pode ser realizado teste de distribuição uniforme ao longo do ano (contra a alternativa de agrupamentos em torno de alguns períodos específicos no tempo).
+    + Teste de Rayleigh e $U^2$ de Watson;
+    + Pacote em `R` `circular`
+- Estimativa do erro padrão relativo.
+
+\newpage
+# Análises
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+#--------------------#
+# Carregando Pacotes #
+#--------------------#
+
+library(circular)
+
+#----------------#
+# Banco de Dados #
+#----------------#
+
+data <- read.csv("dados mortalidade.csv",h=T,sep=",")
+head(data)
+
+data$group = as.factor(data$group) # transformando em fator
+taxa <- levels(data[,1])
+
+# Grupos
+Mysticeti <- data[data$group=="Mysticeti",]
+Odontoceti <- data[data$group=="Odontoceti",]
+Pinipedia <- data[data$group=="Pinipedia",] 
+Procellariiformes <- data[data$group=="Procellariiformes",]
+SeaTurtles <- data[data$group=="Sea Turtles",]
+Sphenisciformes <- data[data$group=="Sphenisciformes",]
+```
+
+
+## Código da Análise Estatística
+
+\newpage
+## Estatística Circular
+
+### Grupo Geral
+
+```{r message=FALSE, warning=FALSE}
+geral <- rep(data$angle, data$abundance)
+geral_rad <- rad(geral)
+geral_circ <- as.circular(geral_rad)
+
+## Gráficos
+
+# frequência
+rose.diag(geral_circ, rotation = "clock", zero = pi/2,units = "rads", 
+          axes = F, border = "black", ticks = T, prop = 3, main = "Geral")
+axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
+                                                                                     "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
+lines(density(geral_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+
+## Testes de Hipóteses
+
+rao.spacing.test(geral_circ) 
+rayleigh.test(geral_circ)
+watson.test(geral_circ, dist = "uniform")
+
+```
+
+
+### Mysticeti
+```{r message=FALSE, warning=FALSE}
+mysti <- rep(Mysticeti$angle, Mysticeti$abundance)
+mysti_rad<-rad(mysti)
+mysti_circ<-as.circular(mysti_rad)
+
+
+## Gráficos
+
+# frequência
+rose.diag(mysti_circ, rotation = "clock", zero = pi/2,units = "rads", 
+          axes = F, border = "black", ticks = T, prop = 3, main = "Mysticeti")
+axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
+                                                                                     "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
+lines(density(mysti_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+
+## Testes de Hipóteses
+
+rao.spacing.test(mysti_circ) 
+rayleigh.test(mysti_circ)
+watson.test(mysti_circ, dist = "uniform")
+
+```
+
+
+### Odontoceti
+```{r message=FALSE, warning=FALSE}
+odonto <- rep(Odontoceti$angle, Odontoceti$abundance)
+odonto_rad<-rad(odonto)
+odonto_circ<-as.circular(odonto_rad)
+
+## Gráficos
+
+# frequência
+rose.diag(odonto_circ, rotation = "clock", zero = pi/2,units = "rads", 
+          axes = F, border = "black", ticks = T, prop = 3, main = "Odontoceti")
+axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
+                                                                                     "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
+lines(density(odonto_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+
+## Testes de Hipóteses
+
+rao.spacing.test(odonto_circ) 
+rayleigh.test(odonto_circ)
+watson.test(odonto_circ, dist = "uniform")
+```
+
+
+### Pinipedia
+```{r message=FALSE, warning=FALSE}
+pini <- rep(Pinipedia$angle, Pinipedia$abundance)
+pini_rad<-rad(pini)
+pini_circ<-as.circular(pini_rad)
+
+
+## Gráficos
+
+# frequência
+rose.diag(pini_circ, rotation = "clock", zero = pi/2,units = "rads", 
+          axes = F, border = "black", ticks = T, prop = 3, main = "Pinipedia")
+axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
+                                                                                     "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
+lines(density(pini_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+
+## Testes de Hipóteses
+
+rao.spacing.test(pini_circ) 
+rayleigh.test(pini_circ)
+watson.test(pini_circ, dist = "uniform")
+
+```
+
+### Procellariiformes
+```{r message=FALSE, warning=FALSE}
+proce <- rep(Procellariiformes$angle, Procellariiformes$abundance)
+proce_rad<-rad(proce)
+proce_circ<-as.circular(proce_rad)
+
+## Gráficos
+
+# frequência
+rose.diag(proce_circ, rotation = "clock", zero = pi/2,units = "rads", 
+          axes = F, border = "black", ticks = T, prop = 3, main = "Procellariiformes")
+axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
+                                                                                     "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
+lines(density(proce_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+
+## Testes de Hipóteses
+
+rao.spacing.test(proce_circ) 
+rayleigh.test(proce_circ)
+watson.test(proce_circ, dist = "uniform")
+```
+
+### SeaTurtles
+```{r message=FALSE, warning=FALSE}
+turtles <- rep(SeaTurtles$angle, SeaTurtles$abundance)
+turtles_rad<-rad(turtles)
+turtles_circ<-as.circular(turtles_rad)
+
+## Gráficos
+
+# frequência
+rose.diag(turtles_circ, rotation = "clock", zero = pi/2,units = "rads", 
+          axes = F, border = "black", ticks = T, prop = 3, main = "SeaTurtles")
+axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
+                                                                                     "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
+lines(density(turtles_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+
+## Testes de Hipóteses
+
+rao.spacing.test(turtles_circ) 
+rayleigh.test(turtles_circ)
+watson.test(turtles_circ, dist = "uniform")
+
+```
+
+### Sphenisciformes
+```{r message=FALSE, warning=FALSE}
+spheni <- rep(Sphenisciformes$angle, Sphenisciformes$abundance)
+spheni_rad<-rad(spheni)
+spheni_circ<-as.circular(spheni_rad)
+
+
+## Gráficos
+
+# frequência
+rose.diag(spheni_circ, rotation = "clock", zero = pi/2,units = "rads", 
+          axes = F, border = "black", ticks = T, prop = 3, main = "Sphenisciformes")
+axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
+                                                                                     "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
+lines(density(spheni_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+
+## Testes de Hipóteses
+
+rao.spacing.test(spheni_circ) 
+rayleigh.test(spheni_circ)
+watson.test(spheni_circ, dist = "uniform")
+```
+
+
+### Todos juntos
+```{r}
+par(mfrow=c(2,2))
+```
+
+
+\newpage
+## Estimativa do Erro Padrão Relativo
