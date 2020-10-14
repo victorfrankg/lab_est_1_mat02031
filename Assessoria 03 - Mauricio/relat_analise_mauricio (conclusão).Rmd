@@ -64,7 +64,7 @@ A análise estatísica empregada no artigo _"Spatiotemporal patterns of carrion 
 \newpage
 # Análises
 
-```{r message=FALSE, warning=FALSE, include=FALSE}
+```{r message=FALSE, warning=FALSE}
 #--------------------#
 # Carregando Pacotes #
 #--------------------#
@@ -93,6 +93,8 @@ Sphenisciformes <- data[data$group=="Sphenisciformes",]
 
 ## Código da Análise Estatística
 
+Obs.: Realizaremos comentários sobre o código ou algo assim? Questiono porque me parece que nenhuma premissa estatística foi quebrada ao observar o código, e utilizei o código deles como base para montar o de "Estatística Circular"
+
 \newpage
 ## Estatística Circular
 
@@ -115,7 +117,7 @@ lines(density(geral_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2
 
 Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Agosto(A) a Novembro(N). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 ## Testes de Hipóteses
 
 rao.spacing.test(geral_circ) 
@@ -145,7 +147,7 @@ lines(density(mysti_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2
 Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Agosto(A) a Novembro(N). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
 
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 ## Testes de Hipóteses
 
 rao.spacing.test(mysti_circ) 
@@ -173,7 +175,7 @@ lines(density(odonto_circ, bw = 20), col = "red", rotation = "clock", zero = pi/
 
 Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Agosto(A) a Dezembro(D). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 ## Testes de Hipóteses
 
 rao.spacing.test(odonto_circ) 
@@ -202,7 +204,7 @@ lines(density(pini_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2,
 
 Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Agosto(A) a Outubro(O). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 ## Testes de Hipóteses
 
 rao.spacing.test(pini_circ) 
@@ -230,7 +232,7 @@ lines(density(proce_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2
 
 Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Outubro(O) a Dezembro(D). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 ## Testes de Hipóteses
 
 rao.spacing.test(proce_circ) 
@@ -258,7 +260,7 @@ lines(density(turtles_circ, bw = 20), col = "red", rotation = "clock", zero = pi
 
 Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Julho(J) a Janeiro(J). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 ## Testes de Hipóteses
 
 rao.spacing.test(turtles_circ) 
@@ -287,7 +289,7 @@ lines(density(spheni_circ, bw = 20), col = "red", rotation = "clock", zero = pi/
 
 Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Agosto(A) a Outubro(O). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 ## Testes de Hipóteses
 
 rao.spacing.test(spheni_circ) 
@@ -301,6 +303,103 @@ Como podemos notar pelos testes acima, rejeitamos a hipótese de os dados estare
 ## Estimativa do Erro Padrão Relativo
 
 ```{r}
+
+#-------------#
+# Erro Padrão #
+#-------------#
+
+# Geral
+n = nrow(data)
+erro_ab = sd(data$abundance)/sqrt(n)
+erro_ab_rel = erro_ab/mean(data$abundance) * 100 # em percentual
+erro_bio = sd(data$biomass)/sqrt(n)
+erro_bio_rel = erro_bio/mean(data$biomass) * 100 # em percentual
+
+# Mysticeti
+n = nrow(Mysticeti)
+erro_ab = sd(Mysticeti$abundance)/sqrt(n)
+erro_ab_rel = erro_ab/mean(Mysticeti$abundance) * 100 # em percentual
+erro_bio = sd(Mysticeti$biomass)/sqrt(n)
+erro_bio_rel = erro_bio/mean(Mysticeti$biomass) * 100 # em percentual
+
+# Odontoceti
+n = nrow(Odontoceti)
+erro_ab = sd(Odontoceti$abundance)/sqrt(n)
+erro_ab_rel = erro_ab/mean(Odontoceti$abundance) * 100 # em percentual
+erro_bio = sd(Odontoceti$biomass)/sqrt(n)
+erro_bio_rel = erro_bio/mean(Odontoceti$biomass) * 100 # em percentual
+
+# Pinipedia
+n = nrow(Pinipedia)
+erro_ab = sd(Pinipedia$abundance)/sqrt(n)
+erro_ab_rel = erro_ab/mean(Pinipedia$abundance) * 100 # em percentual
+erro_bio = sd(Pinipedia$biomass)/sqrt(n)
+erro_bio_rel = erro_bio/mean(Pinipedia$biomass) * 100 # em percentual
+
+# Procellariiformes
+n = nrow(Procellariiformes)
+erro_ab = sd(Procellariiformes$abundance)/sqrt(n)
+erro_ab_rel = erro_ab/mean(Procellariiformes$abundance) * 100 # em percentual
+erro_bio = sd(Procellariiformes$biomass)/sqrt(n)
+erro_bio_rel = erro_bio/mean(Procellariiformes$biomass) * 100 # em percentual
+
+# SeaTurtles
+n = nrow(SeaTurtles)
+erro_ab = sd(SeaTurtles$abundance)/sqrt(n)
+erro_ab_rel = erro_ab/mean(SeaTurtles$abundance) * 100 # em percentual
+erro_bio = sd(SeaTurtles$biomass)/sqrt(n)
+erro_bio_rel = erro_bio/mean(SeaTurtles$biomass) * 100 # em percentual
+
+# Sphenisciformes
+n = nrow(Sphenisciformes)
+erro_ab = sd(Sphenisciformes$abundance)/sqrt(n)
+erro_ab_rel = erro_ab/mean(Sphenisciformes$abundance) * 100 # em percentual
+erro_bio = sd(Sphenisciformes$biomass)/sqrt(n)
+erro_bio_rel = erro_bio/mean(Sphenisciformes$biomass) * 100 # em percentual
+
+# CRIAR TABELA PARA MOSTRAR
+
+#--------#
+# IC 95% #
+#--------#
+
+# Geral
+n = nrow(data)
+IC95_ab <- paste0("(",mean(data$abundance)-qt(.975,n-1)*sd(data$abundance)/sqrt(n)," , ",mean(data$abundance)+qt(.975,n-1)*sd(data$abundance)/sqrt(n),")")
+IC95_bio <- paste0("(",mean(data$biomass)-qt(.975,n-1)*sd(data$biomass)/sqrt(n)," , ",mean(data$biomass)+qt(.975,n-1)*sd(data$biomass)/sqrt(n),")")
+
+# Mysticeti
+n = nrow(Mysticeti)
+IC95_ab <- paste0("(",mean(Mysticeti$abundance)-qt(.975,n-1)*sd(Mysticeti$abundance)/sqrt(n)," , ",mean(Mysticeti$abundance)+qt(.975,n-1)*sd(Mysticeti$abundance)/sqrt(n),")")
+IC95_bio <- paste0("(",mean(Mysticeti$biomass)-qt(.975,n-1)*sd(Mysticeti$biomass)/sqrt(n)," , ",mean(Mysticeti$biomass)+qt(.975,n-1)*sd(Mysticeti$biomass)/sqrt(n),")")
+
+# Odontoceti
+n = nrow(Odontoceti)
+IC95_ab <- paste0("(",mean(Odontoceti$abundance)-qt(.975,n-1)*sd(Odontoceti$abundance)/sqrt(n)," , ",mean(Odontoceti$abundance)+qt(.975,n-1)*sd(Odontoceti$abundance)/sqrt(n),")")
+IC95_bio <- paste0("(",mean(Odontoceti$biomass)-qt(.975,n-1)*sd(Odontoceti$biomass)/sqrt(n)," , ",mean(Odontoceti$biomass)+qt(.975,n-1)*sd(Odontoceti$biomass)/sqrt(n),")")
+
+# Pinipedia
+n = nrow(Pinipedia)
+IC95_ab <- paste0("(",mean(Pinipedia$abundance)-qt(.975,n-1)*sd(Pinipedia$abundance)/sqrt(n)," , ",mean(Pinipedia$abundance)+qt(.975,n-1)*sd(Pinipedia$abundance)/sqrt(n),")")
+IC95_bio <- paste0("(",mean(Pinipedia$biomass)-qt(.975,n-1)*sd(Pinipedia$biomass)/sqrt(n)," , ",mean(Pinipedia$biomass)+qt(.975,n-1)*sd(Pinipedia$biomass)/sqrt(n),")")
+
+# Procellariiformes
+n = nrow(Procellariiformes)
+IC95_ab <- paste0("(",mean(Procellariiformes$abundance)-qt(.975,n-1)*sd(Procellariiformes$abundance)/sqrt(n)," , ",mean(Procellariiformes$abundance)+qt(.975,n-1)*sd(Procellariiformes$abundance)/sqrt(n),")")
+IC95_bio <- paste0("(",mean(Procellariiformes$biomass)-qt(.975,n-1)*sd(Procellariiformes$biomass)/sqrt(n)," , ",mean(Procellariiformes$biomass)+qt(.975,n-1)*sd(Procellariiformes$biomass)/sqrt(n),")")
+
+# SeaTurtles
+n = nrow(SeaTurtles)
+IC95_ab <- paste0("(",mean(SeaTurtles$abundance)-qt(.975,n-1)*sd(SeaTurtles$abundance)/sqrt(n)," , ",mean(SeaTurtles$abundance)+qt(.975,n-1)*sd(SeaTurtles$abundance)/sqrt(n),")")
+IC95_bio <- paste0("(",mean(SeaTurtles$biomass)-qt(.975,n-1)*sd(SeaTurtles$biomass)/sqrt(n)," , ",mean(SeaTurtles$biomass)+qt(.975,n-1)*sd(SeaTurtles$biomass)/sqrt(n),")")
+
+# Sphenisciformes
+n = nrow(Sphenisciformes)
+IC95_ab <- paste0("(",mean(Sphenisciformes$abundance)-qt(.975,n-1)*sd(Sphenisciformes$abundance)/sqrt(n)," , ",mean(Sphenisciformes$abundance)+qt(.975,n-1)*sd(Sphenisciformes$abundance)/sqrt(n),")")
+IC95_bio <- paste0("(",mean(Sphenisciformes$biomass)-qt(.975,n-1)*sd(Sphenisciformes$biomass)/sqrt(n)," , ",mean(Sphenisciformes$biomass)+qt(.975,n-1)*sd(Sphenisciformes$biomass)/sqrt(n),")")
+
+
+# CRIAR TABELA PARA MOSTRAR
 
 ```
 
