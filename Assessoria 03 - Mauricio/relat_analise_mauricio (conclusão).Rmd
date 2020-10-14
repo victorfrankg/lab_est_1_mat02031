@@ -111,15 +111,19 @@ rose.diag(geral_circ, rotation = "clock", zero = pi/2,units = "rads",
 axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
                                                                                      "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
 lines(density(geral_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+```
 
+Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Agosto(A) a Novembro(N). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
+
+```{r}
 ## Testes de Hipóteses
 
 rao.spacing.test(geral_circ) 
 rayleigh.test(geral_circ)
 watson.test(geral_circ, dist = "uniform")
-
 ```
 
+Como podemos notar pelos testes acima, rejeitamos a hipótese de os dados estarem distribuídos uniformemente ao longo do ano.
 
 ### Mysticeti
 ```{r message=FALSE, warning=FALSE}
@@ -136,15 +140,20 @@ rose.diag(mysti_circ, rotation = "clock", zero = pi/2,units = "rads",
 axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
                                                                                      "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
 lines(density(mysti_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+```
 
+Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Agosto(A) a Novembro(N). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
+
+
+```{r}
 ## Testes de Hipóteses
 
 rao.spacing.test(mysti_circ) 
 rayleigh.test(mysti_circ)
 watson.test(mysti_circ, dist = "uniform")
-
 ```
 
+Como podemos notar pelos testes acima, rejeitamos a hipótese de os dados estarem distribuídos uniformemente ao longo do ano.
 
 ### Odontoceti
 ```{r message=FALSE, warning=FALSE}
@@ -160,7 +169,11 @@ rose.diag(odonto_circ, rotation = "clock", zero = pi/2,units = "rads",
 axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
                                                                                      "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
 lines(density(odonto_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+```
 
+Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Agosto(A) a Dezembro(D). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
+
+```{r}
 ## Testes de Hipóteses
 
 rao.spacing.test(odonto_circ) 
@@ -168,6 +181,7 @@ rayleigh.test(odonto_circ)
 watson.test(odonto_circ, dist = "uniform")
 ```
 
+Como podemos notar pelos testes acima, rejeitamos a hipótese de os dados estarem distribuídos uniformemente ao longo do ano.
 
 ### Pinipedia
 ```{r message=FALSE, warning=FALSE}
@@ -184,14 +198,19 @@ rose.diag(pini_circ, rotation = "clock", zero = pi/2,units = "rads",
 axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
                                                                                      "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
 lines(density(pini_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+```
 
+Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Agosto(A) a Outubro(O). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
+
+```{r}
 ## Testes de Hipóteses
 
 rao.spacing.test(pini_circ) 
 rayleigh.test(pini_circ)
 watson.test(pini_circ, dist = "uniform")
-
 ```
+
+Como podemos notar pelos testes acima, rejeitamos a hipótese de os dados estarem distribuídos uniformemente ao longo do ano.
 
 ### Procellariiformes
 ```{r message=FALSE, warning=FALSE}
@@ -207,13 +226,19 @@ rose.diag(proce_circ, rotation = "clock", zero = pi/2,units = "rads",
 axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
                                                                                      "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
 lines(density(proce_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+```
 
+Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Outubro(O) a Dezembro(D). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
+
+```{r}
 ## Testes de Hipóteses
 
 rao.spacing.test(proce_circ) 
 rayleigh.test(proce_circ)
 watson.test(proce_circ, dist = "uniform")
 ```
+
+Como podemos notar pelos testes acima, rejeitamos a hipótese de os dados estarem distribuídos uniformemente ao longo do ano.
 
 ### SeaTurtles
 ```{r message=FALSE, warning=FALSE}
@@ -229,14 +254,19 @@ rose.diag(turtles_circ, rotation = "clock", zero = pi/2,units = "rads",
 axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
                                                                                      "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
 lines(density(turtles_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+```
 
+Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Julho(J) a Janeiro(J). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
+
+```{r}
 ## Testes de Hipóteses
 
 rao.spacing.test(turtles_circ) 
 rayleigh.test(turtles_circ)
 watson.test(turtles_circ, dist = "uniform")
-
 ```
+
+Como podemos notar pelos testes acima, rejeitamos a hipótese de os dados estarem distribuídos uniformemente ao longo do ano.
 
 ### Sphenisciformes
 ```{r message=FALSE, warning=FALSE}
@@ -253,7 +283,11 @@ rose.diag(spheni_circ, rotation = "clock", zero = pi/2,units = "rads",
 axis.circular(at=circular(sort(seq(0, 11/6*pi, pi/6), decreasing = T)), c(labels = c("M", "J",
                                                                                      "J", "A", "S", "O", "N", "D", "J", "F", "M","A")))
 lines(density(spheni_circ, bw = 20), col = "red", rotation = "clock", zero = pi/2, shrink = 1.75)
+```
 
+Como pode-se notar pelo gráfico acima, temos uma maior concentração no período de Agosto(A) a Outubro(O). Podemos realizar teste de hipóteses para averiguar se, de fato, há uma diferença na distribuição dos dados ao longo do ano.
+
+```{r}
 ## Testes de Hipóteses
 
 rao.spacing.test(spheni_circ) 
@@ -261,12 +295,12 @@ rayleigh.test(spheni_circ)
 watson.test(spheni_circ, dist = "uniform")
 ```
 
-
-### Todos juntos
-```{r}
-par(mfrow=c(2,2))
-```
-
+Como podemos notar pelos testes acima, rejeitamos a hipótese de os dados estarem distribuídos uniformemente ao longo do ano.
 
 \newpage
 ## Estimativa do Erro Padrão Relativo
+
+```{r}
+
+```
+
