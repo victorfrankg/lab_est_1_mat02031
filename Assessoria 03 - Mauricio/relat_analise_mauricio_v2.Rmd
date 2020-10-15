@@ -1,0 +1,248 @@
+---
+title: "Relatório de Análise da Assessoria"
+date: '`r paste("Porto Alegre, ", paste(format(Sys.Date(), "%d"),format(Sys.Date(), "%B"), format(Sys.Date(), "%Y"), sep = " de "), sep = "")`'
+output:
+  bookdown::word_document2:
+      reference_docx: plan_analise.docx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#install.packages('formatR')
+#library(formatR)
+
+```
+
+***
+
+# Apresentação
+
+Este documento tem como objetivo apresentar os métodos e resultados estatísticos da análise de dados do trabalho de doutorado __"Spatiotemporal patterns of carrion biomass of marine tetrapods in the interface ocean-land in the southern Brazilian coastline"__ do assessorado __Maurício Tavares__ do __Programa de Pós-Graduação em Biologia Animal__ do __Instituto de Biociências__ da __Universidade Federal do Rio Grande do Sul__. 
+
+## Equipe
+
+__Professor:__ Rodrigo Citton Padilha dos Reis
+
+__Alunos:__
+
+- Celso Menoti da Silva
+- Enzo Bertoldi Oestreich
+- Nicolas Mathias Hahn
+- Victor Frank Gomes
+
+\newpage
+
+# Introdução
+
+## Objetivos
+
+### Objetivo geral
+
+Fornecer uma quantificação robusta e abrangente da biomassa de carcaças no importante e ainda pouco estudado ecossistema: a interface oceano-terra.
+
+### Objetivos específicos
+
+- Descrever a distribuição espaço-temporal da biomassa de carcaças de animais marinhos encalhados na costa litorânea brasileira.
+- Estimar a quantidade de biomassa das carcaças dos animais marinhos encalhados (separada por espécie e multiplicada pela abundância de cada uma).
+
+# Métodos
+
+Os dados de abundância foram coletados entre setembro de 2016 e agosto de 2019.
+
+## Análise estatística
+
+Os dados de abundância foram transformados para radianos e foram descritos por estatísticas circulares descritivas e gráficos de histogramas circulares (diagramas de roseta). A hipótese de distribuição uniforme foi avaliada com o teste de Rayleigh ou o teste de Rao, de acordo com a distribuição (von Mises; unimodal ou multimodal). A suposição de distribuição de von Mises foi avalida utilizando o teste de aderência de Watson. Todas as análises foram estratificadas por grupo de tetrápodes. As análises foram realizadas no software `R` versão `r paste(R.version$major, R.version$minor, sep = ".")` com o pacote `circular`.
+
+\newpage
+
+# Resultados
+
+```{r entrada-dados, echo=FALSE, message=FALSE, warning=FALSE}
+# ---------------------------------------------------
+# Carregando pacotes 
+
+library(circular)
+
+
+# ---------------------------------------------------
+# Criando funções 
+
+# roseta.nae
+
+roseta.nae <- function(data, main, border = "white", col = "lightsalmon", shrink = 1.75, prop = 3, bins = 12*6,...){
+  rose.diag(x = data,
+    rotation = "clock",
+    zero = pi / 2,
+    units = "rads",
+    axes = F,
+    border = border,
+    ticks = T,
+    prop = prop,
+    bins = bins,
+    col = col,
+    main = main
+  )
+  axis.circular(at = circular(sort(seq(0, 11 / 6 * pi, pi / 6), decreasing = T)),
+                c(month.abb[c(5:12, 1:4)]))
+  
+  lines(
+    density(x = data, bw = 20),
+    col = col,
+    rotation = "clock",
+    zero = pi / 2,
+    shrink = shrink
+  )
+}
+
+# ---------------------------------------------------
+# Carregando arquivo de dados 
+
+data <- read.csv(here::here("Assessoria 03 - Mauricio", "dados mortalidade.csv"),
+           header = T, sep = ",")
+
+# head(data)
+
+# ---------------------------------------------------
+# Manipulação de dados
+
+data$group <- as.factor(data$group) # transformando em fator
+taxa <- levels(data[, 1])
+
+# ---------------------------------------------------
+# Criando data.frames Grupo-específicos
+
+Mysticeti         <- data[data$group == "Mysticeti", ]
+Odontoceti        <- data[data$group == "Odontoceti", ]
+Pinipedia         <- data[data$group == "Pinipedia", ]
+Procellariiformes <- data[data$group == "Procellariiformes", ]
+SeaTurtles        <- data[data$group == "Sea Turtles", ]
+Sphenisciformes   <- data[data$group == "Sphenisciformes", ]
+
+# ---------------------------------------------------
+# Criando objetos circulares
+
+# Geral
+geral <- rep(data$angle, data$abundance)
+geral_rad <- rad(geral)
+geral_circ <- as.circular(geral_rad)
+
+# Mysticeti
+mysti <- rep(Mysticeti$angle, Mysticeti$abundance)
+mysti_rad <- rad(mysti)
+mysti_circ <- as.circular(mysti_rad)
+
+# Odontoceti
+odonto <- rep(Odontoceti$angle, Odontoceti$abundance)
+odonto_rad <- rad(odonto)
+odonto_circ <- as.circular(odonto_rad)
+
+# Pinipedia
+pini <- rep(Pinipedia$angle, Pinipedia$abundance)
+pini_rad <- rad(pini)
+pini_circ <- as.circular(pini_rad)
+
+# Procellariiformes
+proce <- rep(Procellariiformes$angle, Procellariiformes$abundance)
+proce_rad <- rad(proce)
+proce_circ <- as.circular(proce_rad)
+
+# SeaTurtles
+turtles <- rep(SeaTurtles$angle, SeaTurtles$abundance)
+turtles_rad <- rad(turtles)
+turtles_circ <- as.circular(turtles_rad)
+
+# Sphenisciformes
+spheni <- rep(Sphenisciformes$angle, Sphenisciformes$abundance)
+spheni_rad <- rad(spheni)
+spheni_circ <- as.circular(spheni_rad)
+```
+
+As principais estatísticas circulares descritivas da abundância são apresentadas na tabela a seguir.
+
+```{r resumo-estatistico, echo=FALSE, message=FALSE, warning=FALSE}
+
+# ---------------------------------------------------
+# Estatísticas descritivas
+
+df.summary <- rbind(summary(mysti_circ), summary(odonto_circ))
+df.summary <- rbind(df.summary, summary(pini_circ))
+df.summary <- rbind(df.summary, summary(proce_circ))
+df.summary <- rbind(df.summary, summary(turtles_circ))
+df.summary <- rbind(df.summary, summary(spheni_circ))
+row.names(df.summary) <- taxa
+
+knitr::kable(x = df.summary, digits = c(0, rep(3,7)), caption = "Estatísticas circulares descritivas", row.names = T)
+```
+
+A distribuição de abundância é apresentada na figura a seguir.
+
+```{r gera-roseta, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+
+# ---------------------------------------------------
+# Gráficos: diagrama de roseta
+png(file = here::here("Assessoria 03 - Mauricio", "roseta-abundancia.png"), width = 1200, height = 600)
+par(mfrow = c(2, 3))
+roseta.nae(data = mysti_circ, main = "Mysticeti")
+roseta.nae(data = odonto_circ, main = "Odontoceti")
+roseta.nae(data = pini_circ, main = "Pinipedia")
+roseta.nae(data = proce_circ, main = "Procellariiformes")
+roseta.nae(data = turtles_circ, main = "Sea Turtles")
+roseta.nae(data = spheni_circ, main = "Sphenisciformes")
+dev.off()
+par(mfrow = c(1, 1))
+
+```
+
+```{r grafico-roseta, echo=FALSE, message=FALSE, warning=FALSE, purl=FALSE, cache=TRUE, out.width="100%", fig.align='center', fig.cap="Distribuição da abundância por grupo de tetrápodes."}
+knitr::include_graphics(here::here('Assessoria 03 - Mauricio', 'roseta-abundancia.png'))
+```
+
+```{r testes, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+# ---------------------------------------------------
+# Avaliando unimodalidade (von Mises)
+
+watson.test(mysti_circ, dist = "vonmises")
+watson.test(odonto_circ, dist = "vonmises")
+watson.test(pini_circ, dist = "vonmises")
+watson.test(proce_circ, dist = "vonmises")
+watson.test(turtles_circ, dist = "vonmises")
+watson.test(spheni_circ, dist = "vonmises")
+
+# ---------------------------------------------------
+# Avaliando uniformidade da distribuição
+# (ausência de agrupamentos no tempo)
+
+# Teste de Rao
+rao.spacing.test(mysti_circ) #,alpha = 0.5)
+rao.spacing.test(odonto_circ)
+rao.spacing.test(pini_circ)
+rao.spacing.test(proce_circ)
+rao.spacing.test(spheni_circ)
+rao.spacing.test(turtles_circ)
+
+# Teste de Rayleigh
+rayleigh.test(mysti_circ)
+rayleigh.test(odonto_circ)
+rayleigh.test(pini_circ)
+rayleigh.test(proce_circ)
+rayleigh.test(spheni_circ)
+rayleigh.test(turtles_circ)
+
+```
+
+A suposição de distribuição de von Mises não foi rejeitada apenas para o grupo Mysticeti (valo $p > 0.10$; para os demais grupos o valor $p$ foi $< 0.01$) de acordo com o teste de Watson. A hipótese de uniformidade da distribuição da abundância foi rejeitada para todos os grupos (valor $p < 0.01$) segundo o teste de Rao (para o grupo Mysticeti também foi empregado o teste de Rayleigh, que também rejeitou a hipótese de uniformidade da distribuição; valor $p < 0.01$).
+
+# Considerações
+
+- Código revisado e adequado;
+- Com respeito a hipótese de uniformidade, esta foi rejeitada para a distribuição de abundância em todos os grupos. Isto sugere a presença de agrupamentos no tempo.
+- Erro padrão relativo: ainda em construção. Dúvida: erro padrão referente a qual estimativa?
+
+\newpage
+
+# Apêndice: código em R
+
+A seguir é apresentado o código em `R` utilizado nas análises estatísticas.
+
+```{r ref.label=knitr::all_labels(), echo = T, eval = F}
+```

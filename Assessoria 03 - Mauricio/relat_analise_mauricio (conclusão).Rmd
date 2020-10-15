@@ -17,10 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Apresentação
 
-Este documento tem como objetivo apresentar os métodos estatísticos para análise de dados do trabalho de doutorado __"Spatiotemporal patterns of carrion biomass of marine tetrapods in the interface ocean-land in the southern Brazilian coastline"__ do assessorado __Maurício Tavares__ do __Programa de Pós-Graduação em Biologia Animal__ do __Instituto de Biociências__ da __Universidade Federal do Rio Grande do Sul__. 
-
-
-A seguir são apresentados os objetivos do trabalho de doutorado, as variáveis do estudo e análise estatística. 
+Este documento tem como objetivo apresentar os métodos e resultados estatísticos da análise de dados do trabalho de doutorado __"Spatiotemporal patterns of carrion biomass of marine tetrapods in the interface ocean-land in the southern Brazilian coastline"__ do assessorado __Maurício Tavares__ do __Programa de Pós-Graduação em Biologia Animal__ do __Instituto de Biociências__ da __Universidade Federal do Rio Grande do Sul__. 
 
 ## Equipe
 
@@ -62,7 +59,8 @@ A análise estatísica empregada no artigo _"Spatiotemporal patterns of carrion 
 - Estimativa do erro padrão relativo.
 
 \newpage
-# Análises
+
+# Resultados
 
 ```{r message=FALSE, warning=FALSE}
 #--------------------#
