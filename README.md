@@ -9,6 +9,16 @@
 <br/>
 <br/>
 <br/>
+
+As seguintes etapas compõem os planos de análise e relatórios:
+
+- Apresentação: informações do cliente e turma, prelúdio do plano de análise;
+- Objetivos: definição do escopo, objetivos primários e secundários da pesquisa em questão;
+- Delineamento: detalhamento de como foram / serão feitas as etapas da pesquisa;
+- Variáveis: definição da variável resposta / desfecho e suas covariáveis;
+- Análise Estatística: sugestão de análise estatística para cada caso ou avaliação dos métodos aplicados, caso a pesquisa já tenha passado por esta etapa;
+- Anexos: Sugestão de tabulação dos dados e Dicionário de Dados, quando couber.
+
 <br/>
 
 ### Fluxo de Trabalho:
