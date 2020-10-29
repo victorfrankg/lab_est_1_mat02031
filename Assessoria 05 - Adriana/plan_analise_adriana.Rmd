@@ -41,8 +41,8 @@ Avaliar a influência das variáveis coletadas no diagnóstico de casos de Raiva
 
 ### Objetivos específicos
 
-# Delineamento do estudo
-
+# Delineamento do estudo  
+Consiste em um estudo observacional dentro de um período de um ano (dezembro de 2017 a dezembro de 2018) onde foram coletados dados de 85 animais distribuídos em cerca de 48 municípios do Rio Grande do Sul, nos quais busca-se avaliar a associação das diversas variáveis observadas, tais como idade e sexo, com o diagnóstico da raiva.
 
 # Variáveis do estudo
 
@@ -61,7 +61,7 @@ Avaliar a influência das variáveis coletadas no diagnóstico de casos de Raiva
 
 # Análise estatística
 
-A descrição do desfecho e covariáveis será aplicada em variáveis quantitativas utilizando médias e desvios-padrões, medianas e intervalos interquartis. Em caso de variável qualitativa, será construído tabelas de frequência e percentuais. A visualização gráfica se dará através de diagramas circulares e gráficos de barra. Para avaliar a influência das variáveis de estudo no diagnóstico de raiva será utilizado o modelo de regressão logística, avaliando os pressupostos para uso do mesmo. 
+A descrição do desfecho e covariáveis será aplicada em variáveis quantitativas utilizando médias e desvios-padrões, medianas e intervalos interquartis. Em caso de variável qualitativa, será construído tabelas de frequência e percentuais. A visualização gráfica se dará através de diagramas circulares e gráficos de barra. Será criado um novo banco onde os valores **NI** serão convertidos para *NA*; a coluna Sinais será transformada em novas colunas de variáveis binárias (ausência ou presença) para cada um dos sinais observados. Para avaliar a influência das variáveis de estudo no diagnóstico de raiva será utilizado o modelo de regressão logística, avaliando os pressupostos para uso do mesmo. 
 
 \newpage
 
