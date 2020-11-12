@@ -1,0 +1,154 @@
+---
+title: "Relatório de Consultoria Raquel - Veterinária"
+author: "Lab. Estatítica - Turma C"
+date: "05 de novembro de 2020"
+output:
+ bookdown::word_document2:
+       reference_docx: plan_analise.docx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(compareGroups)
+library(readxl)
+
+```
+
+
+## Relatório de Consultoria da Raquel  - Sensoriamento Remoto
+### Introdução
+##### Objetivos Principais:
+
+Investigar os potenciais riscos toxicológicos da utilização do óleo essencial de oliva no que se refere à toxicidade crônica e reprodutiva em ratos Wistar, contribuindo para a elucidação de questões relacionadas à segurança do seu uso como agente terapêutico que poderiam restringir ou impossibilitar seu uso como insumo farmacêutico. 
+
+### Objetivos Secundários:
+
+
+Avaliar os efeitos da do óleo essencial de oliva sobre a fertilidade de ratos Wistar, machos e fêmeas, formação e maturação espermática, acasalamento, fertilização, desenvolvimento pré-natal, gestação, parto e lactação.
+
+###Desfecho:
+Comapração das médias dos diferentes das variéveis resposta nos níveis fatoriais.
+
+Avaliar os efeitos do óleo essencial de oliva sobre a fertilidade de ratos Wistar, machos e fêmeas, formação e maturação espermática, acasalamento, fertilização, desenvolvimento pré-natal, gestação, parto e lactação.  
+
+
+
+###Desfecho:
+Comapração das médias dos diferentes das variáveis resposta nos nível fatoriais.
+
+
+###Covariáveis:
+- Fatores: Níveis de Tratamento (2000mg/kg, 1000mg/kg, 500mg/kg e controlo) se Sexo (Macho e Fêmea)
+
+
+
+###Plano de Análise
+
+Para avaliar a toxicidade do óleo essencial de oliva são propostos modelos Fatoriais Cruzados para avaliar a
+diferenças médias das variáveis resposta sob o efeito dos tratamentos ( quantidades de óleo essencial de oliva:
+2000mg/kg, 1000mg/kg, 500mg/kg e o controle ) e o sexo.
+Quanto ao efeito do óleo essencial de oliva sobre a fertilidade são propostos modelos unidimensionais fixos para
+avaliar as diferenças médias das variáveis resposta correspondente à vertilidade sob o efeito dos tratamentos.
+
+### Metodologia de Análise Estatástica Proposta
+
+O modelo Unifatorial fixo é proposto para avaliar a fertilidade comparar as médias das variávies repsota nos
+níveis do fator em questão que os níveis de óleo essencial de oliva. O modelo proposto pode ser equacionado
+da seguinte forma:
+
+Propõe-se inicialmente uma análise descritiva das variáveis de interesse com a finalidade de descrever a amostra e identificar padrões temporais.  
+
+Para avaliar a toxicidade do óleo essencial de oliva são propostos modelos Fatoriais Cruzados para avaliar a diferenças médias das variáveis resposta sob o efeito dos tratamentos ( quantidades de óleo essencial de oliva: 2000mg/kg, 1000mg/kg, 500mg/kg e o controle) e o sexo. 
+
+Quanto ao efeito do óleo essencial de oliva sobre a fertilidade são propostos modelos unidimensionais fixos para avaliar as diferenças médias das variáveis resposta correspondente à vertilidade sob o efeito dos tratamentos. 
+
+### Metodologia de Análise Estatística Proposta
+
+O modelo Unifatorial fixo é proposto para avaliar a fertilidade comparar as médias das variáveis resposta nos níveis do fator em questão que os níveis de óleo essencial de oliva. O modelo proposto pode ser equacionado da seguinte forma:
+
+
+$$
+y_{ijk}= \mu + \alpha_i +\epsilon_{ijk}
+$$
+
+Sendo os índices
+
+i: Tratamento com óleo essencial de oliva (1-2000mg/kg; 2-1000mg/kg; 3-500mg/kg; 4-controlo)
+
+j: Resposta (1-Peso corporal; 2-consumo de água; 3-consumo de alimento; 4-Tamanho Coração; 5-Tamanho do Baço; 6-Tamanho do Fígado; 7-Tamanhho do RimD; 8-Tamanho do RimE)
+Caso Feminino (9-OvárioD; 10-OvárioE; 11-Útero; 12-Implantes Uterinos; 13-Número de Filhotes)
+Caso Masculino (14-TestículoD; 15-TestículoE; 16-EpididimoD; 17-EpididimoE; 18-Próstata; 18-Vesícula Seminal; 19-Células Espermáticas; 20-Espermatozóides; 21-Número de Espermatozoides; 22-produção diária de espermátides )
+    
+
+Sendo os índices
+
+i: Tratamento com óleo essencial de oliva (1-2000mg/kg; 2-1000mg/kg; 3-500mg/kg; 4-controlo)
+
+j: Resposta (1-Peso corporal; 2-consumo de água; 3-consumo de alimento; 4-Tamanho Coração; 5-Tamanho do Baço; 6-Tamanho do Fígado; 7-Tamanho do RimD; 8-Tamanho do RimE)
+
+   Caso Feminino (9-OvárioD; 10-OvárioE; 11-útero; 12-Implantes Uterinos; 13-Número de Filhotes)  
+   
+   Caso Masculino (14-TestículoD; 15-TestículoE; 16-EpididimoD; 17-EpididimoE; 18-Próstata; 18-Vesícula Seminal; 19-Células Espermáticas; 20-Espermatozoides; 21-N?mero de Espermatozoides; 22-produção diária de espermátides)
+
+
+k: Repetição
+
+$\mu$: média total 
+
+$\epsilon_{ijk}$: resíduo
+
+
+##Hipótese nula testada no modelo:
+
+As médias das variáveis Resposta são significativamente iguais sob o efeito dos níveis do tratamento com óleo
+essencial de oliva?
+
+##Teste
+A realização Teste de Hipótese proposto no modelo considete na Análise de Variância pela tabela ANOVA.
+Esse teste considera a razão entre o Quadrado Médio dos Tratamentos pelo Quadrado Médio do Erro
+Experimental uma estatítica de um parâmetro de distribuição $F_{t−1;t(r−1)}$, sendo t total de tratamentos e  o número de repetições.
+
+
+##Complementação
+Comparação 2a2 pelo Teste de Tukey.
+
+
+## Análise de Covariância
+
+Considerando a variabildiade intrínseca das unidades experimentais é proposto uma análise de corvariância com a finalidade de ajustar o efeito da variável resposta que sofre influência de uma variável ou uma causa de variação não controlada permitindo um controle do erro experimental. O modelo da análise de cováriância é:
+
+$$
+y_{ijkl} = \mu + \tau_k + \beta x_{jl} +\epsilon_{ijkl}
+$$
+
+sendo os índeces:
+
+i: variável respotas (1-OvárioD; 2-OvárioE; 11-Útero; 3-Implantes Uterinos; 4-Número de Filhotes; 5-TestículoD; 6-TestículoE; 7-EpididimoD; 8-EpididimoE; 9-Próstata; 10-Vesicula
+Seminal; 11-Células Espermáticas; 12-Espermatozóides; 13-Número de Espermatozoides; 14-produção diária
+de espermátides ).
+
+j: cováriaveis (1-Peso corporal; 2-consumo de água; 3-consumo de alimento).
+
+k:  Níveis de Tratamento (2000mg/kg, 1000mg/kg, 500mg/kg e controlo).
+
+l: Repetição
+
+##Hipóteses nulas testadas no modelo:
+
+1) O efeito do k-ésimo nível do fator experimental são iguais e nulos em todos os níveis? 
+
+2) As variáveis $x$ e $y$ apresentam relação linear, ou seja $\beta = 0$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
