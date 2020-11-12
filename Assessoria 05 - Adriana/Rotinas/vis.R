@@ -11,7 +11,7 @@ require(webr)
 dfSummary(df) # apenas para nossa visualização
 
 
-# Visualização Gráfica ----------------------------------------------------
+# Visualização  ----------------------------------------------------
 
 # número de casos por município
 
@@ -147,6 +147,10 @@ df[which(df$Raiva == 1),1] %>%
   incidence(., interval = 'week',first_date = '2018-01-01',last_date = '2018-12-31',standard = F) %>% 
   plot(., color = 'black',n_breaks = nrow(.)/3,border = 'white')+
   theme(axis.text.x = element_text(angle = 45, hjust = 0.8, size = 10))
-  
 
+df[which(df$Babesia == 1),1] %>%
+  incidence(., interval = '30') %>% 
+  plot(., color = 'black',n_breaks = nrow(.),border = 'white')+
+  theme_minimal()%+replace%
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.8, size = 10))
 
