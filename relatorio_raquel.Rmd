@@ -84,6 +84,24 @@ Experimental uma estatítica de um parâmetro de distribuição $F_{t−1;t(r−
 ##Complementação
 Comparação 2a2 pelo Teste de Tukey.
 
+## Análise de Covariância
+
+Considerando a variabildiade intrínseca das unidades experimentais é proposto uma análise de corvariância com a finalidade de ajustar o efeito da variável resposta que sofre influência de uma variável ou uma causa de variação não controlada permitindo um controle do erro experimental. O modelo da análise de cováriância é:
+
+$$
+y_{ijk} = \mu + \tau_j + \beta x_{jk} +\epsilon_{ijk}
+$$
+
+sendo os índeces:
+
+i: variável respotas (1-OvárioD; 2-OvárioE; 11-Útero; 3-Implantes Uterinos; 4-Número de Filhotes; 5-TestículoD; 6-TestículoE; 7-EpididimoD; 8-EpididimoE; 9-Próstata; 10-Vesicula
+Seminal; 11-Células Espermáticas; 12-Espermatozóides; 13-Número de Espermatozoides; 14-produção diária
+de espermátides ).
+
+j: cováriaveis (1-Peso corporal; 2-consumo de água; 3-consumo de alimento).
+
+k: repetição.
+
 
 
 
