@@ -69,6 +69,17 @@ ggplot(df, aes(x = SinaisA, fill = Raiva))+
   scale_x_discrete(labels = c('Ausente','Presente','NA'))
 
 # ...
+ggplot(df, aes(x = SinaisAB, fill = Raiva))+
+  geom_bar(position=position_dodge(), colour = 'black')+
+  theme_minimal()+
+  geom_text(aes(label=stat(count)),stat='count',vjust = - 0.3,
+            position = position_dodge(width = 0.9))+
+  labs(y = 'Contagem')+
+  lims(y = c(0,40))+
+  scale_fill_discrete(labels = c('Ausente','Presente'))+
+  scale_x_discrete(labels = c('Ausente','Presente','NA'))
+
+# ...
 ggplot(df, aes(x = SinaisABC, fill = Raiva))+
   geom_bar(position=position_dodge(), colour = 'black')+
   theme_minimal()+
@@ -128,10 +139,14 @@ ggplot(df, aes(x = SinaisC, fill = Raiva))+
 
 df[which(df$Raiva == 1),1] %>%
   incidence(., interval = '30',first_date = '2018-01-01',last_date = '2018-12-31',standard = F) %>% 
-  plot(., color = 'black', border = 'white')
+  plot(., color = 'black',n_breaks = nrow(.),border = 'white')+
+  theme_minimal()%+replace%
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.8, size = 10))
 
 df[which(df$Raiva == 1),1] %>%
   incidence(., interval = 'week',first_date = '2018-01-01',last_date = '2018-12-31',standard = F) %>% 
-  plot(., color = 'black', border = 'white')
+  plot(., color = 'black',n_breaks = nrow(.)/3,border = 'white')+
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.8, size = 10))
+  
 
 
