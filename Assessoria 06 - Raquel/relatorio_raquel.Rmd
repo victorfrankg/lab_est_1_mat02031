@@ -3,8 +3,8 @@ title: "Relatório de Consultoria Raquel - Veterinária"
 author: "Lab. Estatítica - Turma C"
 date: "12 de novembro de 2020"
 output:
-  pdf_document: default
-  html_document: default
+  bookdown::word_document2:
+      reference_docx: plan_analise.docx
 
 ---
 
@@ -15,7 +15,7 @@ library(readxl)
 ```
 
 ***
-## Relatório de Consultoria da Alice  - Sensoriamento Remoto
+## Relatório de Consultoria da Raquel  - Sensoriamento Remoto
 ### Introdução
 ##### Objetivos Principais:
 
@@ -77,3 +77,21 @@ A realização Teste de Hipótese proposto no modelo considete na Análise de Va
 ##Complementação
 Comparação 2a2 pelo Teste de Tukey
 
+
+## Análise de Covariância
+
+Considerando a variabildiade intrínseca das unidades experimentais é proposto uma análise de corvariância com a finalidade de ajustar o efeito da variável resposta que sofre influência de uma variável ou uma causa de variação não controlada permitindo um controle do erro experimental. O modelo da análise de cováriância é:
+
+$$
+y_{ijk} = \mu + \tau_j + \beta x_{jk} +\epsilon_{ijk}
+$$
+
+sendo os índeces:
+
+i: variável respotas (1-OvárioD; 2-OvárioE; 11-Útero; 3-Implantes Uterinos; 4-Número de Filhotes; 5-TestículoD; 6-TestículoE; 7-EpididimoD; 8-EpididimoE; 9-Próstata; 10-Vesicula
+Seminal; 11-Células Espermáticas; 12-Espermatozóides; 13-Número de Espermatozoides; 14-produção diária
+de espermátides ).
+
+j: cováriaveis (1-Peso corporal; 2-consumo de água; 3-consumo de alimento).
+
+k: repetição.
