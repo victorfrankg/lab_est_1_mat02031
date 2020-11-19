@@ -7,6 +7,10 @@ machos = read.xlsx(here("Assessoria 06 - Raquel","oleuropeina_limpos.xlsx"), she
 colnames(machos) = c("t","dia","periodo","grupo","rato","massa","alimento","agua")
 # colnames(femeas) = c("t","dia","periodo","grupo","rato","massa","alimento","agua")
 
+#--------#
+# Machos #
+#--------#
+
 str(machos)
 for (i in c(3,4,5)){
   machos[,i] = as.factor(machos[,i])
@@ -44,3 +48,33 @@ ggplot(data=machos, aes(x=t, y=alimento, group=interaction(t, grupo))) +
 ggplot(data=machos, aes(x=t, y=agua, group=interaction(t, grupo))) +
   geom_boxplot(aes(fill=grupo)) +
   facet_wrap(~periodo, scales = "free")
+
+# órgãos
+library(compareGroups)
+
+org_machos = read.xlsx(here("Assessoria 06 - Raquel","registro_limpo.xlsx"), sheetIndex = 1)
+colnames(org_machos) = c("grupo","rato","massa","coracao","baco","figado","rim_dir","rim_esq",
+                         "test_dir","test_esq","vesicula_seminal","epididimo_dir","epididimo_esq","prostata",
+                         "celulas_espermaticas","espermatozoides","total_espermatozoide",
+                         "producao_espermatides")
+res = compareGroups(grupo ~ . - rato, data = org_machos)
+res = compareGroups(grupo ~ . - rato, data = org_machos, method = 1)
+summary(res)
+
+tabela = createTable(res, show.p.mul = T)
+
+g = list()
+
+for (i in 3:(ncol(org_machos))){
+  g[[i-2]] = ggplot(data=org_machos, aes(y=org_machos[,i])) +
+    geom_boxplot(aes(fill=grupo)) +
+    ylab(paste(colnames(org_machos)[i]))
+}
+
+for (i in 1:length(g)){
+  print(g[[i]])
+}
+
+#--------#
+# Fêmeas #
+#--------#
