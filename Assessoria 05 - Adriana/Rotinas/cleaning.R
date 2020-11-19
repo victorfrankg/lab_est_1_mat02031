@@ -15,10 +15,12 @@ df = read_excel(here('Assessoria 05 - Adriana','Bancos','dados_adriana.xlsx'), n
 
 dv = dummyVars('~Sinais',df)  # fç para criar novas colunas a partir de Sinais
 df = dv %>% predict(df) %>% # one hot encoding
-  cbind(df[-c(1,7)],.) %>% # juntando ao banco original e retirando uma coluna
-  rename_with( ~(gsub("[.]", " ", .x))) %>% # tirando ponto dos nomes das colunas 
-  mutate(across(5:ncol(.), factor), 
-         Idade = cut(Idade, breaks = c(0,12,24,36,Inf), labels = c('0 a 12','13 a 24','25 a 36','37 a Inf')))
+  cbind(df[-c(1, 7)],.) %>% # juntando ao banco original e retirando uma coluna
+  rename_with( ~(gsub("[.]", " ", .x))) %>% # tirando ponto dos nomes das colunas
+  mutate(across(5 : ncol(.), factor), 
+         Idade = cut(Idade, breaks = c(0, 12, 24, 36, Inf), labels = c('0 a 12', '13 a 24', '25 a 36', '> 36')),
+         Sexo = recode(Sexo, F = "Fêmea", M = "Macho"))
+
 
 
 for (i in 6:ncol(df)) {
